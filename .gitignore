@@ -1,0 +1,7 @@
+.*
+creator-project/local/
+creator-project/temp/
+creator-project/build/
+
+lua-project/res/raw-assets/
+lua-project/src/assets/
