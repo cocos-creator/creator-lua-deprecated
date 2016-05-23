@@ -1,0 +1,67 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "ShipWave",
+  "_objFlags": 0,
+  "_duration": 0.8,
+  "sample": 10,
+  "speed": 1,
+  "wrapMode": 2,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "5b331ee3-d62c-4765-b43a-efdb91bb481d"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "434ed300-4f72-43fc-9b66-15bb1f870ff1"
+            }
+          },
+          {
+            "frame": 0.2,
+            "value": {
+              "__uuid__": "6e4760bf-697c-4439-af16-7c13a4dff0a4"
+            }
+          },
+          {
+            "frame": 0.3,
+            "value": {
+              "__uuid__": "55653ab6-41eb-4486-87ff-fccd1e899ff8"
+            }
+          },
+          {
+            "frame": 0.4,
+            "value": {
+              "__uuid__": "a81589be-b631-4afd-923c-dfef47ff3c4a"
+            }
+          },
+          {
+            "frame": 0.5,
+            "value": {
+              "__uuid__": "7e8410e1-57ef-45ad-988d-22446ecce871"
+            }
+          },
+          {
+            "frame": 0.6,
+            "value": {
+              "__uuid__": "0da4e26c-ed9b-4fb0-b523-de677539644e"
+            }
+          },
+          {
+            "frame": 0.7,
+            "value": {
+              "__uuid__": "473f0cc2-c4f3-47c3-9387-1e2412b14a79"
+            }
+          }
+        ]
+      }
+    },
+    "props": {}
+  },
+  "events": []
+}

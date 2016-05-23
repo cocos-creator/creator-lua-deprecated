@@ -1,0 +1,23 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "ShipWaveUpA0007",
+    "texture": "64044f48-5480-477b-a000-81332e37b8fd",
+    "atlas": "9a6e2c5c-1be9-4e60-a514-6ac5a806089a",
+    "rect": [
+      330,
+      197,
+      74,
+      8
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      80,
+      12
+    ],
+    "rotated": 1
+  }
+}

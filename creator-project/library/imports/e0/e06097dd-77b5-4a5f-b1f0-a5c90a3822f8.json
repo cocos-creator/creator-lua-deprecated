@@ -1,0 +1,23 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "IncreaseHp0014",
+    "texture": "64044f48-5480-477b-a000-81332e37b8fd",
+    "atlas": "9a6e2c5c-1be9-4e60-a514-6ac5a806089a",
+    "rect": [
+      354,
+      690,
+      70,
+      68
+    ],
+    "offset": [
+      -1,
+      1
+    ],
+    "originalSize": [
+      72,
+      90
+    ],
+    "rotated": 0
+  }
+}

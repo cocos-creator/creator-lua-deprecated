@@ -1,0 +1,23 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "PlayerTower02Fire0006",
+    "texture": "64044f48-5480-477b-a000-81332e37b8fd",
+    "atlas": "9a6e2c5c-1be9-4e60-a514-6ac5a806089a",
+    "rect": [
+      279,
+      990,
+      26,
+      24
+    ],
+    "offset": [
+      0,
+      -2
+    ],
+    "originalSize": [
+      28,
+      28
+    ],
+    "rotated": 0
+  }
+}

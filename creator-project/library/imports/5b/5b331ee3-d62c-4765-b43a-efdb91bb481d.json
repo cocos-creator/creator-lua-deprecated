@@ -1,0 +1,23 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "ShipWaveA0001",
+    "texture": "64044f48-5480-477b-a000-81332e37b8fd",
+    "atlas": "9a6e2c5c-1be9-4e60-a514-6ac5a806089a",
+    "rect": [
+      171,
+      990,
+      78,
+      14
+    ],
+    "offset": [
+      -2,
+      1
+    ],
+    "originalSize": [
+      92,
+      16
+    ],
+    "rotated": 0
+  }
+}
