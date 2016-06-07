@@ -30,6 +30,8 @@ local _direct = {
     ["_opacity"]               = "setOpacity",
     ["_opacityModifyRGB"]      = "setOpacityModifyRGB",
     ["_position"]              = "setPosition",
+    ["_rotationX"]             = "setRotationSkewX",
+    ["_rotationY"]             = "setRotationSkewY",
     ["_scaleX"]                = "setScaleX",
     ["_scaleY"]                = "setScaleY",
     ["_skewX"]                 = "setSkewX",
@@ -48,8 +50,12 @@ local _copy = {
 local function _set(obj, props)
     for name, v in pairs(props) do
         local key = _direct[name]
-        if key and obj[key] then
-            obj[key](obj, v)
+        if key then
+            if obj[key] then
+                obj[key](obj, v)
+            else
+                print(name, key)
+            end
         end
         if _copy[name] then
             obj[_copy[name]] = v

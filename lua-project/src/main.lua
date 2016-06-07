@@ -30,8 +30,8 @@ local function main()
     local creator = require "creator.init"
     local assets = creator.getAssets()
 
-    -- local url = "Scene/TestAnchorPointScene"
-    local url = "Scene/BattleScene"
+    local url = "Scene/TestAnchorPointScene"
+    -- local url = "Scene/BattleScene"
     local scene = assets:createScene(url)
     scene:run()
 

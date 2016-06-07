@@ -3,6 +3,7 @@
     "__type__": "cc.SceneAsset",
     "_name": "",
     "_objFlags": 0,
+    "_rawFiles": null,
     "scene": {
       "__id__": 1
     }
@@ -121,7 +122,8 @@
         "__id__": 75
       }
     ],
-    "_prefab": null
+    "_prefab": null,
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Node",
@@ -176,7 +178,8 @@
         "__id__": 5
       }
     ],
-    "_prefab": null
+    "_prefab": null,
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Sprite",
@@ -278,7 +281,8 @@
         "__id__": 8
       }
     ],
-    "_prefab": null
+    "_prefab": null,
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Sprite",
@@ -360,7 +364,7 @@
     "_scaleY": 0.8,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 280,
+      "x": 320,
       "y": -320
     },
     "_skewX": 0,
@@ -380,7 +384,8 @@
         "__id__": 11
       }
     ],
-    "_prefab": null
+    "_prefab": null,
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Sprite",
@@ -482,7 +487,8 @@
         "__id__": 14
       }
     ],
-    "_prefab": null
+    "_prefab": null,
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Sprite",
@@ -588,7 +594,8 @@
         "__id__": 20
       }
     ],
-    "_prefab": null
+    "_prefab": null,
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Node",
@@ -623,7 +630,7 @@
     "_scaleY": 0.3,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 200,
+      "x": 150,
       "y": -180
     },
     "_skewX": 0,
@@ -643,7 +650,8 @@
         "__id__": 18
       }
     ],
-    "_prefab": null
+    "_prefab": null,
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Sprite",
@@ -776,8 +784,8 @@
     "_scaleY": 0.8,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 280,
-      "y": -100
+      "x": 320,
+      "y": -80
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -796,7 +804,8 @@
         "__id__": 26
       }
     ],
-    "_prefab": null
+    "_prefab": null,
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Node",
@@ -832,7 +841,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 100,
-      "y": 100
+      "y": 170
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -851,7 +860,8 @@
         "__id__": 24
       }
     ],
-    "_prefab": null
+    "_prefab": null,
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Sprite",
@@ -1016,7 +1026,8 @@
         "__id__": 44
       }
     ],
-    "_prefab": null
+    "_prefab": null,
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Node",
@@ -1071,7 +1082,8 @@
         "__id__": 30
       }
     ],
-    "_prefab": null
+    "_prefab": null,
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Sprite",
@@ -1173,7 +1185,8 @@
         "__id__": 33
       }
     ],
-    "_prefab": null
+    "_prefab": null,
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Sprite",
@@ -1275,7 +1288,8 @@
         "__id__": 36
       }
     ],
-    "_prefab": null
+    "_prefab": null,
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Sprite",
@@ -1377,7 +1391,8 @@
         "__id__": 39
       }
     ],
-    "_prefab": null
+    "_prefab": null,
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Sprite",
@@ -1479,7 +1494,8 @@
         "__id__": 42
       }
     ],
-    "_prefab": null
+    "_prefab": null,
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Sprite",
@@ -1632,7 +1648,8 @@
         "__id__": 65
       }
     ],
-    "_prefab": null
+    "_prefab": null,
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Node",
@@ -1683,8 +1700,8 @@
     "_scaleY": 0.3,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 200
+      "x": -140,
+      "y": 60
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -1703,7 +1720,8 @@
         "__id__": 63
       }
     ],
-    "_prefab": null
+    "_prefab": null,
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Node",
@@ -1758,7 +1776,8 @@
         "__id__": 49
       }
     ],
-    "_prefab": null
+    "_prefab": null,
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Sprite",
@@ -1840,8 +1859,8 @@
     "_scaleY": 2,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -168,
-      "y": -170
+      "x": -136,
+      "y": -140
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -1860,7 +1879,8 @@
         "__id__": 52
       }
     ],
-    "_prefab": null
+    "_prefab": null,
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Sprite",
@@ -1962,7 +1982,8 @@
         "__id__": 55
       }
     ],
-    "_prefab": null
+    "_prefab": null,
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Sprite",
@@ -2064,7 +2085,8 @@
         "__id__": 58
       }
     ],
-    "_prefab": null
+    "_prefab": null,
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Sprite",
@@ -2166,7 +2188,8 @@
         "__id__": 61
       }
     ],
-    "_prefab": null
+    "_prefab": null,
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Sprite",
@@ -2366,7 +2389,8 @@
         "__id__": 74
       }
     ],
-    "_prefab": null
+    "_prefab": null,
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Node",
@@ -2399,14 +2423,14 @@
         "__id__": 68
       }
     ],
-    "_rotationX": 0,
-    "_rotationY": 0,
+    "_rotationX": 77,
+    "_rotationY": 77,
     "_scaleX": 0.5,
     "_scaleY": 0.5,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -200,
-      "y": 0
+      "x": -100,
+      "y": 100
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -2425,7 +2449,8 @@
         "__id__": 72
       }
     ],
-    "_prefab": null
+    "_prefab": null,
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Node",
@@ -2460,8 +2485,8 @@
     "_scaleY": 3.5,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 116,
-      "y": 85
+      "x": 132,
+      "y": 47.5
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -2480,7 +2505,8 @@
         "__id__": 70
       }
     ],
-    "_prefab": null
+    "_prefab": null,
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Sprite",
@@ -2626,7 +2652,7 @@
   {
     "__type__": "cc.Canvas",
     "_name": "",
-    "_objFlags": 1835008,
+    "_objFlags": 3932160,
     "node": {
       "__id__": 2
     },

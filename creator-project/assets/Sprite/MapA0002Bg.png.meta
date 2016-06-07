@@ -6,7 +6,7 @@
   "filterMode": "bilinear",
   "subMetas": {
     "MapA0002Bg": {
-      "ver": "1.0.2",
+      "ver": "1.0.3",
       "uuid": "8506b260-6e39-4782-904a-331f33d7ca8b",
       "rawTextureUuid": "d96dbaa8-bf35-4d75-bc8e-66206379f718",
       "trimType": "auto",
@@ -18,6 +18,8 @@
       "trimY": 0,
       "width": 1600,
       "height": 1000,
+      "rawWidth": 1600,
+      "rawHeight": 1000,
       "borderTop": 0,
       "borderBottom": 0,
       "borderLeft": 0,

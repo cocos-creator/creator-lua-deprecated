@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "sources": [
+    "unknown"
+  ],
+  "names": [],
+  "mappings": "AAAA,EAAE,CAAC,KAAK,CAAC;AACL,eAAS,EAAE,CAAC,SAAS;;AAErB,cAAU,EAAE;;;;;;;;;;AAUR,kBAAU,EAAE;AACR,uBAAS,IAAI;AACb,gBAAI,EAAE,EAAE,CAAC,MAAM;SAClB;KACJ;;;AAGD,UAAM,EAAE,kBAAY;AAChB,aAAK,IAAI,CAAC,GAAG,CAAC,EAAE,CAAC,GAAG,EAAE,EAAE,CAAC,EAAE,EAAE;AACzB,gBAAI,IAAI,GAAG,EAAE,CAAC,WAAW,CAAC,IAAI,CAAC,UAAU,CAAC,CAAC;AAC3C,gBAAI,GAAG,GAAG,EAAE,CAAC,CAAC,CAAC,IAAI,CAAC,MAAM,EAAE,GAAG,GAAG,GAAG,GAAG,EAAE,IAAI,CAAC,MAAM,EAAE,GAAG,EAAE,GAAG,EAAE,CAAC,CAAC;AACnE,gBAAI,CAAC,WAAW,CAAC,GAAG,CAAC,CAAC;AACtB,gBAAI,CAAC,cAAc,CAAC,EAAE,GAAG,GAAG,CAAC,CAAC,CAAC,CAAC;AAChC,gBAAI,CAAC,IAAI,CAAC,QAAQ,CAAC,IAAI,CAAC,CAAC;SAC5B;KACJ;;CAMJ,CAAC,CAAC",
+  "file": "unknown",
+  "sourcesContent": [
+    "cc.Class({\n    extends: cc.Component,\n\n    properties: {\n        // foo: {\n        //    default: null,\n        //    url: cc.Texture2D,  // optional, default is typeof default\n        //    serializable: true, // optional, default is true\n        //    visible: true,      // optional, default is true\n        //    displayName: 'Foo', // optional\n        //    readonly: false,    // optional, default is false\n        // },\n        // ...\n        shipPrefab: {\n            default: null,\n            type: cc.Prefab\n        }\n    },\n\n    // use this for initialization\n    onLoad: function () {\n        for (var i = 0; i < 60; i++) {\n            var ship = cc.instantiate(this.shipPrefab);\n            var pos = cc.p(Math.random() * 800 - 400, Math.random() * 60 + 30);\n            ship.setPosition(pos);\n            ship.setLocalZOrder(50 - pos.y);\n            this.node.addChild(ship);\n        }\n    },\n\n    // called every frame, uncomment this function to activate update callback\n    // update: function (dt) {\n\n    // },\n});\n"
+  ]
+}
