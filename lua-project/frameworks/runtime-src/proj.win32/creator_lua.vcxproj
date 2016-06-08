@@ -39,12 +39,12 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
     <Import Project="cocos2dx.props" />
-    <Import Project="$(COCOS_X_ROOT)\cocos2d-x-3.10\cocos\2d\cocos2d_headers.props" />
+    <Import Project="$(COCOS_X_ROOT)\cocos2d-x-3.11.1\cocos\2d\cocos2d_headers.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
     <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
     <Import Project="cocos2dx.props" />
-    <Import Project="$(COCOS_X_ROOT)\cocos2d-x-3.10\cocos\2d\cocos2d_headers.props" />
+    <Import Project="$(COCOS_X_ROOT)\cocos2d-x-3.11.1\cocos\2d\cocos2d_headers.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -68,7 +68,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\Classes;$(ProjectDir)..\Classes\runtime;$(ProjectDir)..\Classes\protobuf-lite;$(COCOS_X_ROOT)\cocos2d-x-3.10\external\win32-specific\zlib\include;$(COCOS_X_ROOT)\cocos2d-x-3.10\cocos\scripting\lua-bindings\auto;$(COCOS_X_ROOT)\cocos2d-x-3.10\cocos\scripting\lua-bindings\manual;$(COCOS_X_ROOT)\cocos2d-x-3.10\cocos\audio\include;$(COCOS_X_ROOT)\cocos2d-x-3.10\external;$(COCOS_X_ROOT)\cocos2d-x-3.10\external\lua\luajit\include;$(COCOS_X_ROOT)\cocos2d-x-3.10\external\lua\tolua;$(COCOS_X_ROOT)\cocos2d-x-3.10\external\chipmunk\include\chipmunk;$(COCOS_X_ROOT)\cocos2d-x-3.10\external\curl\include\win32;$(COCOS_X_ROOT)\cocos2d-x-3.10\extensions;$(COCOS_X_ROOT)\cocos2d-x-3.10\tools\simulator\libsimulator\lib;$(COCOS_X_ROOT)\cocos2d-x-3.10\tools\simulator\libsimulator\lib\protobuf-lite;$(COCOS_X_ROOT)\cocos2d-x-3.10\;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\Classes;$(ProjectDir)..\Classes\runtime;$(ProjectDir)..\Classes\protobuf-lite;$(COCOS_X_ROOT)\cocos2d-x-3.11.1\external\win32-specific\zlib\include;$(COCOS_X_ROOT)\cocos2d-x-3.11.1\cocos\scripting\lua-bindings\auto;$(COCOS_X_ROOT)\cocos2d-x-3.11.1\cocos\scripting\lua-bindings\manual;$(COCOS_X_ROOT)\cocos2d-x-3.11.1\cocos\audio\include;$(COCOS_X_ROOT)\cocos2d-x-3.11.1\external;$(COCOS_X_ROOT)\cocos2d-x-3.11.1\external\lua\luajit\include;$(COCOS_X_ROOT)\cocos2d-x-3.11.1\external\lua\tolua;$(COCOS_X_ROOT)\cocos2d-x-3.11.1\external\chipmunk\include\chipmunk;$(COCOS_X_ROOT)\cocos2d-x-3.11.1\external\curl\include\win32;$(COCOS_X_ROOT)\cocos2d-x-3.11.1\extensions;$(COCOS_X_ROOT)\cocos2d-x-3.11.1\tools\simulator\libsimulator\lib;$(COCOS_X_ROOT)\cocos2d-x-3.11.1\tools\simulator\libsimulator\lib\protobuf-lite;$(COCOS_X_ROOT)\cocos2d-x-3.11.1\;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END)</AdditionalIncludeDirectories>
       <PrecompiledHeader>
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
@@ -117,7 +117,7 @@
     </PreBuildEvent>
     <PreLinkEvent>
       <Command>if not exist "$(OutDir)" mkdir "$(OutDir)"
-xcopy /Y /Q "$(COCOS_X_ROOT)\cocos2d-x-3.10\prebuilt\win32\*.*" "$(OutDir)"
+xcopy /Y /Q "$(COCOS_X_ROOT)\cocos2d-x-3.11.1\prebuilt\win32\*.*" "$(OutDir)"
 </Command>
     </PreLinkEvent>
     <PostBuildEvent>
@@ -138,7 +138,7 @@ xcopy "$(ProjectDir)..\..\..\src" "$(LocalDebuggerWorkingDirectory)\src" /D /E /
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\Classes;$(COCOS_X_ROOT)\cocos2d-x-3.10\external\win32-specific\zlib\include;$(COCOS_X_ROOT)\cocos2d-x-3.10\cocos\scripting\lua-bindings\auto;$(COCOS_X_ROOT)\cocos2d-x-3.10\cocos\scripting\lua-bindings\manual;$(COCOS_X_ROOT)\cocos2d-x-3.10\cocos\audio\include;$(COCOS_X_ROOT)\cocos2d-x-3.10\external;$(COCOS_X_ROOT)\cocos2d-x-3.10\external\lua\luajit\include;$(COCOS_X_ROOT)\cocos2d-x-3.10\external\lua\tolua;$(COCOS_X_ROOT)\cocos2d-x-3.10\external\chipmunk\include\chipmunk;$(COCOS_X_ROOT)\cocos2d-x-3.10\extensions;$(COCOS_X_ROOT)\cocos2d-x-3.10\external\curl\include\win32;$(COCOS_X_ROOT)\cocos2d-x-3.10\;$(COCOS_X_ROOT)\cocos2d-x-3.10\tools\simulator\libsimulator\lib;$(COCOS_X_ROOT)\cocos2d-x-3.10\tools\simulator\libsimulator\lib\protobuf-lite;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\Classes;$(COCOS_X_ROOT)\cocos2d-x-3.11.1\external\win32-specific\zlib\include;$(COCOS_X_ROOT)\cocos2d-x-3.11.1\cocos\scripting\lua-bindings\auto;$(COCOS_X_ROOT)\cocos2d-x-3.11.1\cocos\scripting\lua-bindings\manual;$(COCOS_X_ROOT)\cocos2d-x-3.11.1\cocos\audio\include;$(COCOS_X_ROOT)\cocos2d-x-3.11.1\external;$(COCOS_X_ROOT)\cocos2d-x-3.11.1\external\lua\luajit\include;$(COCOS_X_ROOT)\cocos2d-x-3.11.1\external\lua\tolua;$(COCOS_X_ROOT)\cocos2d-x-3.11.1\external\chipmunk\include\chipmunk;$(COCOS_X_ROOT)\cocos2d-x-3.11.1\extensions;$(COCOS_X_ROOT)\cocos2d-x-3.11.1\external\curl\include\win32;$(COCOS_X_ROOT)\cocos2d-x-3.11.1\;$(COCOS_X_ROOT)\cocos2d-x-3.11.1\tools\simulator\libsimulator\lib;$(COCOS_X_ROOT)\cocos2d-x-3.11.1\tools\simulator\libsimulator\lib\protobuf-lite;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END)</AdditionalIncludeDirectories>
       <PrecompiledHeader>
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
@@ -184,7 +184,7 @@ xcopy "$(ProjectDir)..\..\..\src" "$(LocalDebuggerWorkingDirectory)\src" /D /E /
     </PreBuildEvent>
     <PreLinkEvent>
       <Command>if not exist "$(OutDir)" mkdir "$(OutDir)"
-xcopy /Y /Q "$(COCOS_X_ROOT)\cocos2d-x-3.10\prebuilt\win32\*.*" "$(OutDir)"
+xcopy /Y /Q "$(COCOS_X_ROOT)\cocos2d-x-3.11.1\prebuilt\win32\*.*" "$(OutDir)"
 </Command>
     </PreLinkEvent>
     <PostBuildEvent>
@@ -217,7 +217,7 @@ xcopy /Y /Q "$(COCOS_X_ROOT)\cocos2d-x-3.10\prebuilt\win32\*.*" "$(OutDir)"
   <ItemGroup>
     <Image Include="res\game.ico" />
   </ItemGroup>
-  
+
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
