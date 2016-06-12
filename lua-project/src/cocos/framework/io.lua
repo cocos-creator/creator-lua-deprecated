@@ -66,7 +66,7 @@ function io.pathinfo(path)
         local b = string_byte(path, pos)
         if b == 46 then -- 46 = char "."
             extpos = pos
-        elseif b == 47 then -- 47 = char "/"
+        elseif b == 47 or b == 92 then -- 47 = char "/", 92 = char "\"
             break
         end
         pos = pos - 1
