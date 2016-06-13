@@ -108,6 +108,9 @@ end
 
 function SceneAsset:_onEnter()
     cc.printdebug("[Scene] event enter")
+
+    self._time = 0
+
     if not self._tracking then
         self._tracking = table.makeweak({})
     end
@@ -122,8 +125,6 @@ function SceneAsset:_onEnter()
             component:start(obj)
         end
     end
-
-    self._time = 0
 end
 
 function SceneAsset:_onExit()

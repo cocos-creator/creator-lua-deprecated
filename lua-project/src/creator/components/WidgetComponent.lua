@@ -44,7 +44,7 @@ function WidgetComponent:align(target)
         if name ~= "" then
             name = "'" .. name .. "': "
         end
-        -- cc.printdebug("[Assets]   - [Widget] align %s%s[%s]", name, target.__type, target.__id)
+        cc.printdebug("[Component] [Widget] align %s%s[%s], alignFlags: %d", name, target.__type, target.__id, self.props._alignFlags)
     end
 
     if self.props._alignFlags == 0 then return end
@@ -60,20 +60,23 @@ function WidgetComponent:align(target)
         if parentName then
             parentName = "'" .. parentName .. "': "
         end
-        -- cc.printdebug("[Assets]   - [Widget] parent is %s%s[%s]", parentName, parent.__type, parent.__id)
+        cc.printdebug("  - parent is %s%s[%s]", parentName, parent.__type, parent.__id)
     end
 
     -- get parent content size
-    local pap    = parent:getAnchorPoint()
-    local pw     = parent.contentSize.width
-    local ph     = parent.contentSize.height
+    local pap = parent:getAnchorPoint()
+    if not parent.contentSize then
+        parent.contentSize = parent:getContentSize()
+    end
+    local pw = parent.contentSize.width
+    local ph = parent.contentSize.height
     local hw, hh = pw / 2, ph / 2
-    -- cc.printdebug("  - parent content size: width = %0.2f, height = %0.2f", pw, ph)
+    cc.printdebug("  - parent content size: width = %0.2f, height = %0.2f", pw, ph)
 
     -- local cx, cy = 0, 0
     local cx     = hw - pw * pap.x
     local cy     = hh - ph * pap.y
-    -- cc.printdebug("  - parent cetner: x = %0.2f, y = %0.2f", cx, cy)
+    cc.printdebug("  - parent origin point: x = %0.2f, y = %0.2f", cx, cy)
 
     local pleft   = cx - hw
     local pright  = cx + hw
@@ -95,31 +98,37 @@ function WidgetComponent:align(target)
     end
 
     -- get target size
-    local ap   = target:getAnchorPoint()
-    local sx   = target:getScaleX()
-    local sy   = target:getScaleY()
-    local w    = target.contentSize.width * sx
-    local h    = target.contentSize.height * sy
+    local ap = target:getAnchorPoint()
+    local sx = target:getScaleX()
+    local sy = target:getScaleY()
+
+    if not target.contentSize then
+        local rect = target:getBoundingBox()
+        cc.dump(rect)
+        target.contentSize = {width = rect.width, height = rect.height}
+    end
+    local w = target.contentSize.width * sx
+    local h = target.contentSize.height * sy
     local x, y = target:getPosition()
-    -- cc.printdebug("  - target content size: width = %0.2f, height = %0.2f", w, h)
+    cc.printdebug("  - target content size: width = %0.2f, height = %0.2f", w, h)
 
     -- calc offsets
-    local left = props._left or props.left
+    local left = props._left or 0
     if left and not props._isAbsLeft then
         left = left * pw
     end
 
-    local right = props._right or props.right
+    local right = props._right or 0
     if right and not props._isAbsRight then
         right = right * pw
     end
 
-    local top = props._top or props.top
+    local top = props._top or 0
     if top and not props._isAbsTop then
         top = top * ph
     end
 
-    local bottom = props._bottom or props.bottom
+    local bottom = props._bottom or 0
     if bottom and not props._isAbsBottom then
         bottom = bottom * ph
     end
@@ -128,7 +137,7 @@ function WidgetComponent:align(target)
     if bit_and(flags, _CENTER) ~= 0 then
         x = cx + w * (ap.x - 0.5)
     elseif bit_and(flags, _LEFT_RIGHT) == _LEFT_RIGHT then
-        cc.printwarn("[Assets]   - [Widget] not support LEFT_RIGHT align in cocos2d-x")
+        cc.printwarn("  - not support LEFT_RIGHT align in cocos2d-x")
         return
     elseif bit_and(flags, _LEFT) ~= 0 then
         x = pleft + left + w * ap.x
@@ -139,7 +148,7 @@ function WidgetComponent:align(target)
     if bit_and(flags, _MID) ~= 0 then
         y = cy + h * (ap.y - 0.5)
     elseif bit_and(flags, _TOP_BOTTOM) == _TOP_BOTTOM then
-        cc.printwarn("[Assets]   - [Widget] not support TOP_BOTTOM align in cocos2d-x")
+        cc.printwarn("  - not support TOP_BOTTOM align in cocos2d-x")
         return
     elseif bit_and(flags, _TOP) ~= 0 then
         y = ptop - top - h * (1.0 - ap.y)
@@ -147,7 +156,7 @@ function WidgetComponent:align(target)
         y = pbottom + bottom + h * ap.y
     end
 
-    -- cc.printdebug("[Assets]   - [Widget] set target pos: %0.2f, %0.2f", x, y)
+    cc.printdebug("  - set target pos: %0.2f, %0.2f", x, y)
     target:setPosition(x, y)
 end
 

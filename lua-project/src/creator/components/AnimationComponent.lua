@@ -26,6 +26,7 @@ local function _createAnimation(uuid, assets)
     end
 
     local clip = assets:getAsset(uuid)
+    clip.speed = clip.speed or 1
     local delay = 1.0 / clip.sample / clip.speed
     animation = cc.Animation:create()
     animation:setDelayPerUnit(delay)

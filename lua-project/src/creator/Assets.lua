@@ -14,16 +14,11 @@ local _connect = Connector.connect
 local _assert = assert
 local _error = error
 
-function Assets:ctor(base)
-    self.base = base or ""
-    if self.base ~= "" and string.sub(self.base, -1) ~= "." then
-        self.base = self.base .. "."
-    end
-
-    self.assets  = require(self.base .. "assets.assets")
-    self.files   = require(self.base .. "assets.files")
-    self.scenes  = require(self.base .. "assets.scenes")
-    self.prefabs = require(self.base .. "assets.prefabs")
+function Assets:ctor(vars)
+    self.assets  = vars.assets
+    self.files   = vars.files
+    self.prefabs = vars.prefabs
+    self.scenes  = vars.scenes
 end
 
 function Assets:getLaunchSceneUrl()

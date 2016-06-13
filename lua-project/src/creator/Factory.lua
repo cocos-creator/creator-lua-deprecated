@@ -97,7 +97,7 @@ factory["cc.SpriteFrame"] = function(asset, assets)
     local file    = assets:getFile(content.texture)
     local r       = content.rect
     local rect    = ccrect(r[1], r[2], r[3], r[4])
-    local rotated = content.rotated ~= 0
+    local rotated = content.rotated ~= nil and content.rotated ~= 0
     local offset  = ccp(content.offset[1], content.offset[2])
     local size    = ccsize(content.originalSize[1], content.originalSize[2])
     return cc.SpriteFrame:create(file, rect, rotated, offset, size)
@@ -128,7 +128,7 @@ local _M = {}
 function _M.create(objtype, asset, id, assets)
     local create = factory[objtype]
     if not create then
-        -- cc.printwarn("[Assets] not supported type '%s'", tostring(objtype))
+        cc.printwarn("[Assets] not supported type '%s'", tostring(objtype))
         return nil
     end
     if cc.DEBUG >= DEBUG_VERBOSE then

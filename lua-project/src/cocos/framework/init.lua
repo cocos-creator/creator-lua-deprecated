@@ -112,3 +112,5 @@ cc.import(".math", __CURRENT)
 cc.import(".ctype", __CURRENT)
 cc.import(".os", __CURRENT)
 cc.import(".io", __CURRENT)
+cc.json = cc.import(".json", __CURRENT)
+
