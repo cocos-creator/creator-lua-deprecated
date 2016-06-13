@@ -8,3 +8,6 @@ lua-project/src/assets/
 lua-project/frameworks/runtime-src/proj.ios_mac/build/
 lua-project/runtime/
 lua-project/simulator/
+
+contents.xcworkspacedata
+xcuserdata
