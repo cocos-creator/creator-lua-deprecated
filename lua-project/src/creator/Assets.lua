@@ -14,11 +14,23 @@ local _connect = Connector.connect
 local _assert = assert
 local _error = error
 
-function Assets:ctor(vars)
-    self.assets  = vars.assets
-    self.files   = vars.files
-    self.prefabs = vars.prefabs
-    self.scenes  = vars.scenes
+function Assets:ctor(var)
+    if type(var) == "table" then
+        self.assets  = var.assets
+        self.files   = var.files
+        self.prefabs = var.prefabs
+        self.scenes  = var.scenes
+    else
+        self.base = var or ""
+        if self.base ~= "" and string.sub(self.base, -1) ~= "." then
+            self.base = self.base .. "."
+        end
+
+        self.assets  = require(self.base .. "assets.assets")
+        self.files   = require(self.base .. "assets.files")
+        self.scenes  = require(self.base .. "assets.scenes")
+        self.prefabs = require(self.base .. "assets.prefabs")
+    end
 end
 
 function Assets:getLaunchSceneUrl()

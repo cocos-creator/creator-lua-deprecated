@@ -20,6 +20,19 @@ creator.WidgetComponent    = cc.import(".components.WidgetComponent")
 creator.Reader    = cc.import(".Reader")
 creator.Assets    = cc.import(".Assets")
 
+local _assets
+
+function creator.getAssets()
+    if not _assets then
+        _assets = Assets.new()
+    end
+    return _assets
+end
+
+function creator.setAssets(assets)
+    _assets = assets
+end
+
 function creator.find(obj, name)
     if obj.name == name then
         return obj

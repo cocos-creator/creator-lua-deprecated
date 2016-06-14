@@ -66,7 +66,7 @@ function WidgetComponent:align(target)
     -- get parent content size
     local pap = parent:getAnchorPoint()
     if not parent.contentSize then
-        parent.contentSize = parent:getContentSize()
+        parent.contentSize = {width = 0, height = 0}
     end
     local pw = parent.contentSize.width
     local ph = parent.contentSize.height
@@ -103,9 +103,7 @@ function WidgetComponent:align(target)
     local sy = target:getScaleY()
 
     if not target.contentSize then
-        local rect = target:getBoundingBox()
-        cc.dump(rect)
-        target.contentSize = {width = rect.width, height = rect.height}
+        target.contentSize = {width = 0, height = 0}
     end
     local w = target.contentSize.width * sx
     local h = target.contentSize.height * sy
@@ -114,22 +112,22 @@ function WidgetComponent:align(target)
 
     -- calc offsets
     local left = props._left or 0
-    if left and not props._isAbsLeft then
+    if left and props._isAbsLeft ~= false then
         left = left * pw
     end
 
     local right = props._right or 0
-    if right and not props._isAbsRight then
+    if right and props._isAbsRight ~= false then
         right = right * pw
     end
 
     local top = props._top or 0
-    if top and not props._isAbsTop then
+    if top and props._isAbsTop ~= false then
         top = top * ph
     end
 
     local bottom = props._bottom or 0
-    if bottom and not props._isAbsBottom then
+    if bottom and props._isAbsBottom ~= false then
         bottom = bottom * ph
     end
 

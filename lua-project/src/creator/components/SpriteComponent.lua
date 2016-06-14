@@ -9,8 +9,13 @@ end
 
 function SpriteComponent:onLoad(target)
     local node = self.node
+    local ap = target.__anchorPoint
+    if not ap then
+        ap = {x = 0.5, y = 0.5}
+    end
     target:addChild(node)
-    node:setAnchorPoint(target:getAnchorPoint())
+    target:setAnchorPoint(ap)
+    node:setAnchorPoint(ap)
     node:setColor(target:getColor())
 end
 
