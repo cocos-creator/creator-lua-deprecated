@@ -24,7 +24,7 @@ local _assets
 
 function creator.getAssets()
     if not _assets then
-        _assets = Assets.new()
+        _assets = creator.Assets.new()
     end
     return _assets
 end

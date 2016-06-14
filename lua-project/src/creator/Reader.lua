@@ -16,15 +16,20 @@ function Reader:ctor(config)
     config = config or {}
     self.config = {}
     self.config.inputDir = config.inputDir
-    self.config.outputDir = config.outputDir
     assert(self.config.inputDir, string_format("[Reader] invalid config.inputDir"))
 end
 
 function Reader:loadJSON()
     -- step 1: convert settings.js to settings.lua
     local jsfileSettings = self.config.inputDir .. "/src/settings.js"
-    cc.printinfo("jsfileSettings = %s", jsfileSettings)
     local contents = io.readfile(jsfileSettings)
+    if not contents then
+        cc.printf("[ERR] [Reader] not found file %s", jsfileSettings)
+        return
+    else
+        cc.printf("[Reader] jsfileSettings = %s", jsfileSettings)
+    end
+
     contents = string.gsub(contents, "_CCSettings[ ]*=[ ]*{", "{")
     local settings = cc.json.decode(contents)
     assert(not settings.debug, "[Reader] do not export project with DEBUG mode")
@@ -34,13 +39,11 @@ function Reader:loadJSON()
         files   = {},
         prefabs = {},
         scenes  = {},
-        types   = {},
     }
     for _, val in pairs(settings.scenes) do
         vars.scenes[_stripSceneUrl(val.url)] = val.uuid
     end
     vars.scenes["__launchSceneUrl"] = _stripSceneUrl(settings.launchScene)
-    vars.types = settings.assetTypes
 
     -- step 2: load all json files form res/import, write to import.lua
     if settings.rawAssets.assets then

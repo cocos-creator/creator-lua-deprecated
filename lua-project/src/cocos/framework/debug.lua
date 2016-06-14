@@ -119,6 +119,63 @@ function cc.dump(value, desciption, nesting, _print)
     end
 end
 
+function cc.dumpval(value, desciption, indent, retarr)
+    indent = indent or ""
+
+    local lookup = {}
+    local result = {}
+
+    local function _dump(value, desciption, indent, first)
+        if type(value) ~= "table" then
+            desciption = desciption or "value"
+            if first then
+                result[#result +1 ] = string_format("%s%s %s,", indent, desciption, _dump_value(value))
+            else
+                result[#result +1 ] = string_format("%s[%s] = %s,", indent, _dump_value(desciption), _dump_value(value))
+            end
+        elseif lookup[tostring(value)] then
+            error("FOUND NESTING VALUE, key: " .. desciption .. ", value: " .. tostring(value))
+        else
+            lookup[tostring(value)] = true
+            if first then
+                if desciption then
+                    result[#result +1 ] = string_format("%s%s {", indent, desciption)
+                else
+                    result[#result +1 ] = string_format("%s{", indent)
+                end
+            else
+                result[#result +1 ] = string_format("%s[%s] = {", indent, _dump_value(desciption))
+            end
+            local indent2 = indent.."    "
+            local keys = {}
+            local values = {}
+            for k, v in pairs(value) do
+                keys[#keys + 1] = k
+                values[k] = v
+            end
+            table.sort(keys, function(a, b)
+                if type(a) == "number" and type(b) == "number" then
+                    return a < b
+                else
+                    return tostring(a) < tostring(b)
+                end
+            end)
+            for i, k in ipairs(keys) do
+                _dump(values[k], k, indent2, keylen)
+            end
+            result[#result +1] = string_format("%s},", indent)
+        end
+    end
+    _dump(value, desciption, indent, true)
+    result[#result] = string.sub(result[#result], 1, -2)
+
+    if retarr then
+        return result
+    else
+        return table.concat(result, "\n")
+    end
+end
+
 function cc.printf(fmt, ...)
     print(string_format(tostring(fmt), ...))
 end

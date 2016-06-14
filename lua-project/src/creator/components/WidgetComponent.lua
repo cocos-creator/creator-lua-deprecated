@@ -112,22 +112,22 @@ function WidgetComponent:align(target)
 
     -- calc offsets
     local left = props._left or 0
-    if left and props._isAbsLeft ~= false then
+    if left and props._isAbsLeft == false then
         left = left * pw
     end
 
     local right = props._right or 0
-    if right and props._isAbsRight ~= false then
+    if right and props._isAbsRight == false then
         right = right * pw
     end
 
     local top = props._top or 0
-    if top and props._isAbsTop ~= false then
+    if top and props._isAbsTop == false then
         top = top * ph
     end
 
     local bottom = props._bottom or 0
-    if bottom and props._isAbsBottom ~= false then
+    if bottom and props._isAbsBottom == false then
         bottom = bottom * ph
     end
 
