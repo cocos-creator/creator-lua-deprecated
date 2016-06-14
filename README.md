@@ -33,27 +33,23 @@ Current supported features:
 6.  Run :
 
     ```bash
-    lua convertor/convert creator-project/build/web-mobile/ lua-project/
+    cd lua-project/src
+    lua convert-creator-build.lua ../../creator-project/build/web-mobile
     ```
 
 7.  Check log:
 
     ```txt
-    Read file creator-project/build/web-mobile//res/import/9d/9df8c79e-2667-49f3-ae87-985ceaa8f38a.json
-    Read file creator-project/build/web-mobile//res/import/14/14632310-dc12-4107-8ca5-54617bb57050.json
-    Read file creator-project/build/web-mobile//res/import/43/434ed300-4f72-43fc-9b66-15bb1f870ff1.json
-    Read file creator-project/build/web-mobile//res/import/1f/1f3de62e-4a93-401c-867e-28c4c014315d.json
-    Read file creator-project/build/web-mobile//res/import/d8/d8242628-a86c-428e-a06a-a1004872ff53.json
-    Write file lua-project//src/assets/assets.lua
-    Write file lua-project//src/assets/assets.json
-    Write file lua-project//src/assets/files.lua
-    Write file lua-project//src/assets/files.json
-    Write file lua-project//src/assets/prefabs.lua
-    Write file lua-project//src/assets/prefabs.json
-    Copy file lua-project//res/raw-assets/Sprite/MapA0002Bg.png
-    Copy file lua-project//res/raw-assets/Sprite/box_200x200.png
-    Copy file lua-project//res/raw-assets/Sprite/SheetMapBattle.png
-    Copy file lua-project//res/raw-assets/Sprite/star.png
+    [Reader] jsfileSettings = ../../creator-project/build/web-mobile/src/settings.js
+    [OK] Copy file ../res/raw-assets/Sprite/box_200x200.png
+    [OK] Copy file ../res/raw-assets/Sprite/SheetMapBattle.png
+    [OK] Copy file ../res/raw-assets/Sprite/star.png
+    [OK] Copy file ../res/raw-assets/Sprite/MapA0002Bg.png
+    [OK] write file ../src/assets/scenes.lua
+    [OK] write file ../src/assets/assets.lua
+    [OK] write file ../src/assets/files.lua
+    [OK] write file ../src/assets/prefabs.lua
+    done.
     ```
 
 8.  Run :
