@@ -10,7 +10,7 @@ require "cocos.init"
 local ShipAI = cc.import("logic.ShipAI")
 
 cc.DEBUG = cc.DEBUG_INFO
-cc.DEBUG = cc.DEBUG_VERBOSE
+-- cc.DEBUG = cc.DEBUG_VERBOSE
 cc.DEBUG_DISABLE_DUMP_TRACEBACK = true
 
 local function _cleanmem()
@@ -28,15 +28,10 @@ local function main()
     _cleanmem()
 
     local creator = require "creator.init"
-    local config = {
-        inputDir = "/Users/koala/Desktop/Works/cocos/creator-lua/creator-project/build/web-mobile"
-    }
-    local reader = creator.Reader.new(config)
-    local vars = reader:loadJSON()
-    local assets = creator.Assets.new(vars)
+    local assets = creator.getAssets()
 
     local url = "Scene/TestAnchorPointScene"
-    local url = "Scene/BattleScene"
+    -- local url = "Scene/BattleScene"
     local scene = assets:createScene(url)
     scene:run()
 
