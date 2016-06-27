@@ -10,7 +10,7 @@ require "cocos.init"
 local ShipAI = cc.import("logic.ShipAI")
 
 cc.DEBUG = cc.DEBUG_INFO
-cc.DEBUG = cc.DEBUG_VERBOSE
+-- cc.DEBUG = cc.DEBUG_VERBOSE
 cc.DEBUG_DISABLE_DUMP_TRACEBACK = true
 
 local function _cleanmem()
@@ -33,6 +33,9 @@ local function main()
     local url = assets:getLaunchSceneUrl()
     local scene = assets:createScene(url)
     scene:run()
+
+    -- local button = creator.find(scene, "ButtonWithColor-02")
+    -- button:getComponent("cc.Button"):setEnabled(false)
 
     -- local ship = creator.find(scene, "MyShip")
     -- ship:addComponent(ShipAI.new())
