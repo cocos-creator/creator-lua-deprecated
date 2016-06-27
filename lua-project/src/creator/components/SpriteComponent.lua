@@ -2,9 +2,10 @@
 local ComponentBase = cc.import(".ComponentBase")
 local SpriteComponent = cc.class("cc.Sprite", ComponentBase)
 
-function SpriteComponent:ctor(sprite)
+function SpriteComponent:ctor(sprite, capInsets)
     SpriteComponent.super.ctor(self)
     self.node = sprite
+    self.capInsets = capInsets -- used in ButtonComponent
 end
 
 function SpriteComponent:onLoad(target)
@@ -17,6 +18,11 @@ function SpriteComponent:onLoad(target)
     target:setAnchorPoint(ap)
     node:setAnchorPoint(ap)
     node:setColor(target:getColor())
+
+    if self.capInsets and target.contentSize then
+        node:setContentSize(target.contentSize)
+        self.contentSize = target.contentSize -- used in ButtonComponent
+    end
 end
 
 function SpriteComponent:onDestroy(target)
