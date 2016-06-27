@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "mapPack_tilesheet",
+    "texture": "d6061fd2-1d84-4d0e-a185-8224e53eb1e0",
+    "atlas": "",
+    "rect": [
+      1,
+      0,
+      1087,
+      768
+    ],
+    "offset": [
+      0.5,
+      0
+    ],
+    "originalSize": [
+      1088,
+      768
+    ]
+  }
+}

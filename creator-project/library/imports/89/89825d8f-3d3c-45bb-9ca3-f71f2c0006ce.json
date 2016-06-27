@@ -1,0 +1,14 @@
+{
+  "__type__": "cc.TiledMapAsset",
+  "_name": "Map",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "tmxXmlStr": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<map version=\"1.0\" orientation=\"orthogonal\" renderorder=\"right-down\" width=\"16\" height=\"16\" tilewidth=\"64\" tileheight=\"64\" nextobjectid=\"1\">\n <tileset firstgid=\"1\" name=\"mapPack_tilesheet\" tilewidth=\"64\" tileheight=\"64\" tilecount=\"204\" columns=\"17\">\n  <image source=\"mapPack_tilesheet.png\" width=\"1088\" height=\"768\"/>\n  <terraintypes>\n   <terrain name=\"t1\" tile=\"-1\"/>\n  </terraintypes>\n  <tile id=\"0\" terrain=\",,,0\"/>\n  <tile id=\"1\" terrain=\",,0,0\"/>\n  <tile id=\"2\" terrain=\",,0,\"/>\n  <tile id=\"3\" terrain=\"0,0,0,\"/>\n  <tile id=\"4\" terrain=\"0,0,,0\"/>\n  <tile id=\"17\" terrain=\",0,,0\"/>\n  <tile id=\"18\" terrain=\"0,0,0,0\"/>\n  <tile id=\"19\" terrain=\"0,,0,\"/>\n  <tile id=\"20\" terrain=\"0,,0,0\"/>\n  <tile id=\"21\" terrain=\",0,0,0\"/>\n  <tile id=\"34\" terrain=\",0,,\"/>\n  <tile id=\"35\" terrain=\"0,0,,\"/>\n  <tile id=\"36\" terrain=\"0,,,\"/>\n </tileset>\n <layer name=\"Tile Layer 1\" width=\"16\" height=\"16\">\n  <data encoding=\"base64\" compression=\"zlib\">\n   eJxjYKAeYARiJiIwMw49YkAsTAQWRTJDiEg96FiESvqVgVgFilnJ0I8cDsT6H5t+Uv2BrJ9Uu1mAWJVKdiOHIbHhh64f2Rx8ZrBA7VHFoR+fW9D9TAggpwtCdg4kAAB3NAua\n  </data>\n </layer>\n <layer name=\"Tile Layer 2\" width=\"16\" height=\"16\">\n  <data encoding=\"base64\" compression=\"zlib\">\n   eJxjYBhcgBGImbBgZiL1CwGxMBYsSqQ5ykDMisMMEBYhwg34zCBGPzZ/sACxChCrEqkf2Q0sJOiDAVA8iJGpFwRg7ifWv+gA5n5QvBEb97RwAylhPhQBAHlHBD0=\n  </data>\n </layer>\n <layer name=\"Tile Layer 3\" width=\"16\" height=\"16\">\n  <data encoding=\"base64\" compression=\"zlib\">\n   eJxjYBhawAKLmA4WcR0kTI7ZOgzkmYHNXZToJ1UvtvAhxT5yzcYWB+TYQY7do4B8AAD9dgRV\n  </data>\n </layer>\n</map>\n",
+  "tmxFolderPath": "Sprite",
+  "textures": [
+    {
+      "__uuid__": "d6061fd2-1d84-4d0e-a185-8224e53eb1e0"
+    }
+  ],
+  "tsxFiles": []
+}
