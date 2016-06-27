@@ -35,6 +35,7 @@ local print           = print
 local string_format   = string.format
 local string_rep      = string.rep
 local string_upper    = string.upper
+local string_gsub     = string.gsub
 local table_concat    = table.concat
 local table_insert    = table.insert
 local tostring        = tostring
@@ -53,7 +54,7 @@ function cc.throw(fmt, ...)
     end
 end
 
-local function _dump_value(v)
+local function _dump_output(v)
     if type(v) == "string" then
         v = "\"" .. v .. "\""
     end
@@ -75,25 +76,25 @@ function cc.dump(value, desciption, nesting, _print)
         desciption = desciption or "<var>"
         local spc = ""
         if type(keylen) == "number" then
-            spc = string_rep(" ", keylen - string.len(_dump_value(desciption)))
+            spc = string_rep(" ", keylen - string.len(_dump_output(desciption)))
         end
         if type(value) ~= "table" then
-            result[#result +1 ] = string_format("%s%s%s = %s", indent, _dump_value(desciption), spc, _dump_value(value))
+            result[#result +1 ] = string_format("%s%s%s = %s", indent, _dump_output(desciption), spc, _dump_output(value))
         elseif lookup[tostring(value)] then
-            result[#result +1 ] = string_format("%s%s%s = *REF*", indent, _dump_value(desciption), spc)
+            result[#result +1 ] = string_format("%s%s%s = *REF*", indent, _dump_output(desciption), spc)
         else
             lookup[tostring(value)] = true
             if nest > nesting then
-                result[#result +1 ] = string_format("%s%s = *MAX NESTING*", indent, _dump_value(desciption))
+                result[#result +1 ] = string_format("%s%s = *MAX NESTING*", indent, _dump_output(desciption))
             else
-                result[#result +1 ] = string_format("%s%s = {", indent, _dump_value(desciption))
+                result[#result +1 ] = string_format("%s%s = {", indent, _dump_output(desciption))
                 local indent2 = indent.."    "
                 local keys = {}
                 local keylen = 0
                 local values = {}
                 for k, v in pairs(value) do
                     keys[#keys + 1] = k
-                    local vk = _dump_value(k)
+                    local vk = _dump_output(k)
                     local vkl = string.len(vk)
                     if vkl > keylen then keylen = vkl end
                     values[k] = v
@@ -119,6 +120,17 @@ function cc.dump(value, desciption, nesting, _print)
     end
 end
 
+
+local function _dump_value(v)
+    if type(v) == "string" then
+        v = string_gsub(v, '"', '\\"')
+        v = string_gsub(v, "\n", "\\n")
+        v = "\"" .. v .. "\""
+    end
+    return tostring(v)
+end
+
+
 function cc.dumpval(value, desciption, indent, retarr)
     indent = indent or ""
 
@@ -131,7 +143,7 @@ function cc.dumpval(value, desciption, indent, retarr)
             if first then
                 result[#result +1 ] = string_format("%s%s %s,", indent, desciption, _dump_value(value))
             else
-                result[#result +1 ] = string_format("%s[%s] = %s,", indent, _dump_value(desciption), _dump_value(value))
+                result[#result +1 ] = string_format("%s[%s] = %s,", indent, _dump_output(desciption), _dump_value(value))
             end
         elseif lookup[tostring(value)] then
             error("FOUND NESTING VALUE, key: " .. desciption .. ", value: " .. tostring(value))
@@ -144,7 +156,7 @@ function cc.dumpval(value, desciption, indent, retarr)
                     result[#result +1 ] = string_format("%s{", indent)
                 end
             else
-                result[#result +1 ] = string_format("%s[%s] = {", indent, _dump_value(desciption))
+                result[#result +1 ] = string_format("%s[%s] = {", indent, _dump_output(desciption))
             end
             local indent2 = indent.."    "
             local keys = {}
