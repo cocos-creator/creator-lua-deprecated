@@ -25,15 +25,20 @@ local function _createAnimation(uuid, assets)
         cc.printdebug("[Assets]   - [Animation] create animation %s", uuid)
     end
 
-    local clip = assets:getAsset(uuid)
-    clip.speed = clip.speed or 1
+    local asset = assets:getAsset(uuid)
+    local clip = {}
+    clip.speed  = asset.speed or 1
+    clip.sample = asset.sample or 60
+    clip.speed  = asset.speed or 1
+    clip.wrapMode = asset.wrapMode or 0
+
     local delay = 1.0 / clip.sample / clip.speed
     animation = cc.Animation:create()
     animation:setDelayPerUnit(delay)
 
-    for _, faval in ipairs(clip["curveData"]["comps"]["cc.Sprite"]["spriteFrame"]) do
-        local asset = assets:getAsset(faval["value"]["__uuid__"])
-        local spriteFrame = assets:_createObject(asset)
+    for _, faval in ipairs(asset["curveData"]["comps"]["cc.Sprite"]["spriteFrame"]) do
+        local frameAsset = assets:getAsset(faval["value"]["__uuid__"])
+        local spriteFrame = assets:_createObject(frameAsset)
         animation:addSpriteFrame(spriteFrame)
     end
 
@@ -46,6 +51,8 @@ function AnimationComponent:ctor(props, assets)
     AnimationComponent.super.ctor(self)
     self.props = props
     self._animations = {}
+    if not self.props._clips then return end
+
     for _, clipaval in ipairs(self.props._clips) do
         local animation, clip = _createAnimation(clipaval.__uuid__, assets)
         animation:retain()
