@@ -8,6 +8,10 @@ Current supported features:
 -   Sprite
 -   Sprite Sheet
 -   Widget
+-   Button
+-   EditBox
+-   ParticleSystem
+-   TileMap
 -   Animation (Basic Frame-Animation)
 -   Label (System Font)
 -   Component with Lifetime events
@@ -15,7 +19,9 @@ Current supported features:
 
 ## TODO
 
--   UI Libaray
+-   ProgressBar
+-   Layout
+-   ScrollView
 -   Documents
 
 
