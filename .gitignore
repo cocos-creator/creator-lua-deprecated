@@ -4,6 +4,7 @@ creator-project/temp/
 creator-project/build/
 
 lua-project/res/raw-assets/
+lua-project/res/raw-internal/
 lua-project/src/assets/
 lua-project/frameworks/runtime-src/proj.ios_mac/build/
 lua-project/runtime/
