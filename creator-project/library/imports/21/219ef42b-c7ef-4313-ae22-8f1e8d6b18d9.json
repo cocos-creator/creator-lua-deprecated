@@ -75,7 +75,7 @@
         "__id__": 3
       },
       {
-        "__id__": 28
+        "__id__": 27
       }
     ],
     "_rotationX": 0,
@@ -98,10 +98,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 31
-      },
-      {
-        "__id__": 32
+        "__id__": 30
       }
     ],
     "_prefab": null,
@@ -161,7 +158,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 27
+        "__id__": 26
       }
     ],
     "_prefab": null,
@@ -319,13 +316,9 @@
     "_reorderChildDirty": false,
     "_id": "1a12cVD5YpGY5zGKuFxrMpq",
     "_active": true,
-    "_components": [
-      {
-        "__id__": 25
-      }
-    ],
+    "_components": [],
     "_prefab": {
-      "__id__": 26
+      "__id__": 25
     },
     "groupIndex": 0
   },
@@ -837,18 +830,6 @@
     "fileId": "3f1f6gpwkhKwoIAG4vDeS8Z"
   },
   {
-    "__type__": "70f2bGvo4dBJrus4YDn4XDa",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 7
-    },
-    "_enabled": true,
-    "bulletPrefab": {
-      "__uuid__": "312048ac-cab4-409f-807b-4d2d653e71bf"
-    }
-  },
-  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 7
@@ -926,10 +907,10 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 29
+        "__id__": 28
       },
       {
-        "__id__": 30
+        "__id__": 29
       }
     ],
     "_prefab": null,
@@ -940,7 +921,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 28
+      "__id__": 27
     },
     "_enabled": true,
     "_useOriginalSize": false,
@@ -959,7 +940,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 28
+      "__id__": 27
     },
     "_enabled": true,
     "isAlignOnce": false,
@@ -990,17 +971,5 @@
     },
     "_fitWidth": false,
     "_fitHeight": true
-  },
-  {
-    "__type__": "d6021CL93pPIL8nRQ53eHEO",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 2
-    },
-    "_enabled": true,
-    "shipPrefab": {
-      "__uuid__": "1176f35c-4145-43ee-846c-48c8329f64ec"
-    }
   }
 ]
