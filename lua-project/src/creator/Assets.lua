@@ -66,7 +66,7 @@ function Assets:createAsset(asset)
     local obj
     for id = count, 1, -1 do
         obj = objs[id]
-        self:_addComponents(obj, refs[id], refs)
+        self:_addComponents(obj, refs[id], refs, objs)
         _connect(obj.__type, objs, id, refs)
     end
 
@@ -100,8 +100,10 @@ function Assets:_createObject(asset, id, refs)
     end
 end
 
-function Assets:_addComponents(obj, asset, refs)
-    if not asset._components then return end
+function Assets:_addComponents(obj, asset, refs, objs)
+    if not asset._components then
+        return
+    end
 
     local name
     if cc.DEBUG >= DEBUG_VERBOSE then
@@ -111,7 +113,12 @@ function Assets:_addComponents(obj, asset, refs)
 
     PrefabProtocol.apply(obj)
     for _, componentAsset in ipairs(asset._components) do
-        local component = self:_createObject(componentAsset)
+        local component
+        if componentAsset["__id__"] then
+            component = objs[componentAsset["__id__"]]
+        else
+            component = self:_createObject(componentAsset)
+        end
         if component then
             obj:addComponent(component)
             if cc.DEBUG >= DEBUG_VERBOSE then

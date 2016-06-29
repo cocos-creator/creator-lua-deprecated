@@ -47,11 +47,15 @@ end
 
 --
 
-local _mkdir, _copyfile
+local _mkdir, _copyfile, _fixpath
 
 local _HOME = os.getenv("HOME")
 if _HOME and string.sub(_HOME, 1, 1) == "/" then
     -- mac
+    _fixpath = function(path)
+        return string.gsub(path, "\\", "/")
+    end
+
     _mkdir = function(dir)
         local command = string.format("if [ ! -d %s ]; then mkdir -p %s; fi", dir, dir)
         local ok, status, code = os.execute(command)
@@ -76,11 +80,42 @@ if _HOME and string.sub(_HOME, 1, 1) == "/" then
     end
 else
     -- windows
+    _fixpath = function(path)
+        return string.gsub(path, "/", "\\")
+    end
 
+    _mkdir = function(dir)
+        dir = _fixpath(dir)
+        local command = string.format("IF NOT EXIST \"%s\" MKDIR \"%s\"", dir, dir)
+        local code = os.execute(command)
+        if code ~= 0 then
+            cc.printf("[ERR] Create directory %s failed", dir)
+            os.exit(1)
+        end
+    end
 
+    _copyfile = function(src, dst)
+        src = _fixpath(src)
+        dst = _fixpath(dst)
+        local pi = io.pathinfo(dst)
+        _mkdir(pi.dirname)
+
+        local command = string.format("COPY /Y /B %s %s > NUL", src, dst)
+        local code = os.execute(command)
+        if code ~= 0 then
+            cc.printf("[ERR] Copy file %s to %s failed", src, dst)
+            os.exit(1)
+        end
+
+        cc.printf("[OK] Copy file %s", dst)
+    end
 end
 
-local destDir = ".."
+local destDir = args[2] or ".."
+if string.sub(destDir, -1) == "/" or string.sub(destDir, -1) == "\\" then
+    destDir = string.sub(destDir, 1, -2)
+end
+
 for _, file in pairs(vars.files) do
     local src = inputDir .. "/res/" .. file
     local dst = destDir .. "/res/" .. file
@@ -103,15 +138,11 @@ local function _dumpToLuaFile(filename, varname, var)
     lines[#lines + 1] = string.format("return %s", varname)
     lines[#lines + 1] = ""
     local contents = table.concat(lines, "\n")
+    filename = _fixpath(filename)
     io.writefile(filename, contents)
     _validateLuaFile(filename)
 
     cc.printf("[OK] write file %s", filename)
-    -- contents = cc.json.stringify(var)
-    -- if string.sub(filename, -4) == ".lua" then
-    --     filename = string.sub(filename, 1, -5) .. ".json"
-    -- end
-    -- writefile(filename, contents)
 end
 
 _mkdir(destDir .. "/src/assets")

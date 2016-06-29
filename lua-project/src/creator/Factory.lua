@@ -21,6 +21,7 @@ local LabelComponent          = cc.import(".components.LabelComponent")
 local ParticleSystemComponent = cc.import(".components.ParticleSystemComponent")
 local TiledMapComponent       = cc.import(".components.TiledMapComponent")
 local ButtonComponent         = cc.import(".components.ButtonComponent")
+local EditBoxComponent        = cc.import(".components.EditBoxComponent")
 local AnimationComponent      = cc.import(".components.AnimationComponent")
 local WidgetComponent         = cc.import(".components.WidgetComponent")
 
@@ -176,6 +177,10 @@ factory["cc.Button"] = function(asset, assets)
     return ButtonComponent.new(asset, assets)
 end
 
+factory["cc.EditBox"] = function(asset, assets)
+    return EditBoxComponent.new(asset, assets)
+end
+
 factory["cc.Animation"] = function(asset, assets)
     return AnimationComponent.new(asset, assets)
 end
@@ -196,6 +201,7 @@ function _M.create(objtype, asset, id, assets)
         cc.printwarn("[Assets] not supported type '%s'", tostring(objtype))
         return nil
     end
+
     if cc.DEBUG >= DEBUG_VERBOSE then
         local name = asset._name or ""
         if name ~= "" then name = "'" .. name .. "': " end
@@ -205,6 +211,7 @@ function _M.create(objtype, asset, id, assets)
             cc.printdebug("[Assets]   - create %s%s", name, objtype)
         end
     end
+
     local obj = create(asset, assets)
     if not obj then return nil end
 

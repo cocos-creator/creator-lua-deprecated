@@ -2,16 +2,14 @@
 local ComponentBase = cc.import(".ComponentBase")
 local ButtonComponent = cc.class("cc.Button", ComponentBase)
 
-local _STATE = {
-    ["IDLE"]     = "IDLE",
-    ["PRESSED"]  = "PRESSED",
-    ["DISABLED"] = "DISABLED",
-}
+local _STATE_DISABLED = "DISABLED"
+local _STATE_IDLE     = "IDLE"
+local _STATE_PRESSED  = "PRESSED"
 
 local _SPRITES_MAP = {
-    [_STATE.DISABLED] = "_N$disabledSprite",
-    [_STATE.IDLE]     = "_N$normalSprite",
-    [_STATE.PRESSED]  = "pressedSprite",
+    [_STATE_DISABLED] = "_N$disabledSprite",
+    [_STATE_IDLE]     = "_N$normalSprite",
+    [_STATE_PRESSED]  = "pressedSprite",
 }
 
 local _getRect, _inRect
@@ -21,15 +19,16 @@ local _updateSprite
 function ButtonComponent:ctor(asset, assets)
     ButtonComponent.super.ctor(self)
     self.transition = asset["transition"]
+    self._colors = {}
+    self._spriteFrames = {}
+
     if self.transition == 1 then
         -- colors
-        self._colors = {}
-        self._colors[_STATE.DISABLED] = asset["_N$disabledColor"]
-        self._colors[_STATE.IDLE]     = asset["_N$normalColor"]
-        self._colors[_STATE.PRESSED]  = asset["pressedColor"]
+        self._colors[_STATE_DISABLED] = asset["_N$disabledColor"]
+        self._colors[_STATE_IDLE]     = asset["_N$normalColor"]
+        self._colors[_STATE_PRESSED]  = asset["pressedColor"]
     elseif self.transition == 2 then
         -- sprites
-        self._spriteFrames = {}
         for k1, k2 in pairs(_SPRITES_MAP) do
             if asset[k2] and asset[k2]["__uuid__"] then
                 local uuid = asset[k2]["__uuid__"]
@@ -40,18 +39,18 @@ function ButtonComponent:ctor(asset, assets)
         end
     end
 
-    self.state = _STATE.IDLE
+    self.state = _STATE_IDLE
 end
 
 function ButtonComponent:setEnabled(enabled)
     if enabled then
-        if self.state == _STATE.DISABLED then
-            self.state = _STATE.IDLE
+        if self.state == _STATE_DISABLED then
+            self.state = _STATE_IDLE
             _updateSprite(self)
         end
     else
-        if self.state ~= _STATE.DISABLED then
-            self.state = _STATE.DISABLED
+        if self.state ~= _STATE_DISABLED then
+            self.state = _STATE_DISABLED
             _onTouchCancelled(self)
             _updateSprite(self)
         end
@@ -68,7 +67,7 @@ function ButtonComponent:onLoad(target)
         cc.printwarn("[Asset]   - [Button] not found sprite in target %s%s[%s]", name, target.__type, target.__id)
         return
     end
-    cc.printinfo("[Asset]   - [Button] set listener for %s%s[%s]", name, target.__type, target.__id)
+    cc.printdebug("[Asset]   - [Button] set listener for %s%s[%s]", name, target.__type, target.__id)
 
     local listener = cc.EventListenerTouchOneByOne:create()
     listener:setSwallowTouches(true)
@@ -92,11 +91,11 @@ function ButtonComponent:onLoad(target)
 end
 
 function ButtonComponent:onDestroy(target)
-    if self._spriteFrames then
-        for _, spriteFrame in pairs(self._spriteFrames) do
-            spriteFrame:release()
-        end
+    for _, spriteFrame in pairs(self._spriteFrames) do
+        spriteFrame:release()
     end
+
+    self._sprite = nil
 end
 
 -- private
@@ -117,19 +116,19 @@ _inRect = function(rect, p)
 end
 
 _onTouchBegan = function(self, touch)
-    if self.state ~= _STATE.IDLE then return false end
+    if self.state ~= _STATE_IDLE then return false end
 
     local p = touch:getLocation()
     local rect = _getRect(self._sprite.node)
     if not _inRect(rect, p) then return false end
 
-    self.state = _STATE.PRESSED
+    self.state = _STATE_PRESSED
     _updateSprite(self)
     return true
 end
 
 _onTouchMoved = function(self, touch)
-    if self.state ~= _STATE.IDLE and self.state ~= _STATE.PRESSED then
+    if self.state ~= _STATE_IDLE and self.state ~= _STATE_PRESSED then
         return
     end
 
@@ -137,9 +136,9 @@ _onTouchMoved = function(self, touch)
     local rect = _getRect(self._sprite.node)
     local lastState = self.state
     if _inRect(rect, p) then
-        self.state = _STATE.PRESSED
+        self.state = _STATE_PRESSED
     else
-        self.state = _STATE.IDLE
+        self.state = _STATE_IDLE
     end
     if lastState ~= self.state then
         _updateSprite(self)
@@ -148,8 +147,8 @@ end
 
 _onTouchEnded = function(self)
     local lastState = self.state
-    if self.state == _STATE.PRESSED then
-        self.state = _STATE.IDLE
+    if self.state == _STATE_PRESSED then
+        self.state = _STATE_IDLE
     end
     if lastState ~= self.state then
         _updateSprite(self)
@@ -158,8 +157,8 @@ end
 
 _onTouchCancelled = function(self)
     local lastState = self.state
-    if self.state == _STATE.PRESSED then
-        self.state = _STATE.IDLE
+    if self.state == _STATE_PRESSED then
+        self.state = _STATE_IDLE
     end
     if lastState ~= self.state then
         _updateSprite(self)

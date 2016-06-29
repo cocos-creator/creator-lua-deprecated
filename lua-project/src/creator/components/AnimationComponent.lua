@@ -14,7 +14,6 @@ local _LOOP_LOOP   = 2
 AnimationComponent.LOOP_NORMAL = _LOOP_NORMAL
 AnimationComponent.LOOP_LOOP   = _LOOP_LOOP
 
-
 local _animationCache = cc.AnimationCache:getInstance()
 
 local function _createAnimation(uuid, assets)
@@ -26,13 +25,9 @@ local function _createAnimation(uuid, assets)
     end
 
     local asset = assets:getAsset(uuid)
-    local clip = {}
-    clip.speed  = asset.speed or 1
-    clip.sample = asset.sample or 60
-    clip.speed  = asset.speed or 1
-    clip.wrapMode = asset.wrapMode or 0
-
-    local delay = 1.0 / clip.sample / clip.speed
+    local sample = asset.sample or 60
+    local speed = asset.speed or 1
+    local delay = 1.0 / sample / speed
     animation = cc.Animation:create()
     animation:setDelayPerUnit(delay)
 
@@ -43,7 +38,10 @@ local function _createAnimation(uuid, assets)
     end
 
     _animationCache:addAnimation(animation, uuid)
-    animation.loop = clip.wrapMode
+    animation.loop = _LOOP_NORMAL
+    if asset.wrapMode == 2 then
+        animation.loop = _LOOP_LOOP
+    end
     return animation
 end
 

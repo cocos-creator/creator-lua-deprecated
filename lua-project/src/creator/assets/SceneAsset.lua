@@ -97,7 +97,7 @@ function SceneAsset:_setNode(node)
             self.node._asset = nil
             self.node = nil
         else
-            cc.printwarn("[Scene] not supported event %s", event)
+            cc.printdebug("[Scene] not supported event %s", event)
         end
     end)
 

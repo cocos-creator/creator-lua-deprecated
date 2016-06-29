@@ -53,13 +53,15 @@ end
 
 connector["cc.Node"] = connectNode
 connector["cc.Scene"] = connectNode
+connector["cc.Sprite"] = function() end
 
 local _M = {}
 
 function _M.connect(objtype, objs, parentId, refs)
     local connect = connector[objtype]
     if not connect then
-        cc.printwarn("[Assets] not supported type %s", objtype)
+        cc.printwarn("[Assets] can not connect object as type %s, %s", objtype, parentId)
+        return
     end
 
     connect(objs, parentId, refs)
