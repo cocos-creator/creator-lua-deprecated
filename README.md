@@ -29,12 +29,12 @@ Current supported features:
 
     ![](docs/build.png)
 
-5.  Open Terminal
-6.  Run :
+5.  Open Terminal (**MAC**)
+6.  Run:
 
     ```bash
-    cd lua-project/src
-    lua convert-creator-build.lua ../../creator-project/build/web-mobile
+    cd lua-project
+    ./convert-creator-build.sh ../creator-project/build/web-mobile
     ```
 
 7.  Check log:
@@ -59,6 +59,14 @@ Current supported features:
     cocos run -p mac
     ```
 
-
     ![](docs/play-scene.gif)
+
+### Windows
+
+1.  Run:
+
+    ```bash
+    cd lua-project
+    convert-creator-build.bat ..\creator-project\build\web-mobile
+    ```
 
