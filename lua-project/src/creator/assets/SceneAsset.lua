@@ -42,8 +42,6 @@ _removeTrackingObjects = function(tracking, obj)
             -- invoke component live circle
             for _, component in pairs(obj.components) do
                 component:stop(obj)
-            end
-            for _, component in pairs(obj.components) do
                 component:onDestroy(obj)
             end
             table_remove(tracking, index)
