@@ -35,8 +35,17 @@ _removeTrackingObjects = function(tracking, obj)
     local hash = {}
     _createComponentsHash(hash, obj)
 
+    local obj = nil
     for index = #tracking, 1, -1 do
-        if hash[tracking[index]] then
+        obj = tracking[index] 
+        if hash[obj] then
+            -- invoke component live circle
+            for _, component in pairs(obj.components) do
+                component:stop(obj)
+            end
+            for _, component in pairs(obj.components) do
+                component:onDestroy(obj)
+            end
             table_remove(tracking, index)
         end
     end

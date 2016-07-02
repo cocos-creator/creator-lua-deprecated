@@ -43,16 +43,15 @@ function CannonBall01AI:boom(target, x, y)
     local boom = assets:createPrefab("resources/CannonBoom0001")
     boom:setPosition(x, y)
     boom:setLocalZOrder(2000)
-    boom:trackComponents()
 
     local animation = boom:getComponent("cc.Animation")
     animation:play(boom, function()
-        boom:cleanupComponets()
+		boom:cleanupComponets()
         boom:removeFromParent()
     end)
     target:getParent():addChild(boom)
 
-    target:cleanupComponets()
+	target:cleanupComponets()
     target:removeFromParent()
 end
 
