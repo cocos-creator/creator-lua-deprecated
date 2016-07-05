@@ -9,6 +9,11 @@ local Scale9Sprite = ccui.Scale9Sprite or cc.Scale9Sprite
 function EditBoxComponent:ctor(asset, assets)
     EditBoxComponent.super.ctor(self)
 
+    self.asset = asset
+    self.assets = assets
+end
+
+function EditBoxComponent:init(contentSize, asset, assets)
     local bg
     if asset["_N$backgroundImage"] then
         local uuid = asset["_N$backgroundImage"]["__uuid__"]
@@ -19,7 +24,7 @@ function EditBoxComponent:ctor(asset, assets)
         bg = Scale9Sprite:createWithSpriteFrame(spriteFrame, capInsets)
     end
 
-    local node = EditBox:create({width = 100, height = 20}, bg)
+    local node = EditBox:create(contentSize, bg)
 
     local fontSize = asset["_N$fontSize"] or 24
     node:setFontSize(fontSize)
@@ -36,10 +41,18 @@ function EditBoxComponent:ctor(asset, assets)
     if asset["_N$fontColor"] then
         node:setFontColor(asset["_N$fontColor"])
     end
+    if not asset["_N$placeholder"] then 
+    	asset["_N$placeholder"] = "Enter text here..."
+    end
+    node:setPlaceHolder(asset["_N$placeholder"])
     self.node = node
 end
 
 function EditBoxComponent:onLoad(target)
+    -- delay init control
+    -- must known target's size
+    self:init(target.contentSize, self.asset, self.assets)
+
     local node = self.node
     target:addChild(node)
     node:setContentSize(target.contentSize)
@@ -55,6 +68,8 @@ end
 
 function EditBoxComponent:onDestroy(target)
     self.node = nil
+    self.asset = nil
+    self.assets = nil
 end
 
 return EditBoxComponent

@@ -11,13 +11,13 @@ end
 function LabelComponent:onLoad(target)
     local node = self.node
     target:addChild(node)
-    node:setColor(target:getColor())
+    node:setTextColor(target:getColor())
     node:setPosition(0, 0)
     local ap = target.__anchorPoint
     if not ap then
         ap = {x = 0.5, y = 0.5}
     end
-    if not self.multiline then
+    if self.multiline then
         node:setDimensions(target.contentSize.width, target.contentSize.height)
     end
     node:setAnchorPoint(ap)
