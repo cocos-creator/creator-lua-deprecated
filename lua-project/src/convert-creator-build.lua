@@ -48,6 +48,29 @@ end
 --
 
 local _mkdir, _copyfile, _fixpath
+local _osexecute
+
+if string.sub(_VERSION, 5) > "5.1" then
+    -- 5.2+
+    _osexecute = function(cmd)
+        local ok, status, code = os.execute(cmd)
+        if not ok or status ~= "exit" or code ~= 0 then
+            cc.printf("[CMD FAILED] %s, %s, exit code = %s", cmd, status, tostring(code))
+            return false
+        end
+        return true
+    end
+else
+    -- 5.1
+    _osexecute = function(cmd)
+        local code = os.execute(cmd)
+        if code ~= 0 then
+            cc.printf("[CMD FAILED] %s, exit code = %s", cmd, tostring(code))
+            return false
+        end
+        return true
+    end
+end
 
 local _HOME = os.getenv("HOME")
 if _HOME and string.sub(_HOME, 1, 1) == "/" then
@@ -58,8 +81,7 @@ if _HOME and string.sub(_HOME, 1, 1) == "/" then
 
     _mkdir = function(dir)
         local command = string.format("if [ ! -d %s ]; then mkdir -p %s; fi", dir, dir)
-        local ok, status, code = os.execute(command)
-        if not ok or status ~= "exit" or code ~= 0 then
+        if not _osexecute(command) then
             cc.printf("[ERR] Create directory %s failed", dir)
             os.exit(1)
         end
@@ -70,8 +92,7 @@ if _HOME and string.sub(_HOME, 1, 1) == "/" then
         _mkdir(pi.dirname)
 
         local command = string.format("cp %s %s", src, dst)
-        local ok, status, code = os.execute(command)
-        if not ok or status ~= "exit" or code ~= 0 then
+        if not _osexecute(command) then
             cc.printf("[ERR] Copy file %s to %s failed", src, dst)
             os.exit(1)
         end
@@ -87,8 +108,7 @@ else
     _mkdir = function(dir)
         dir = _fixpath(dir)
         local command = string.format("IF NOT EXIST \"%s\" MKDIR \"%s\"", dir, dir)
-        local code = os.execute(command)
-        if code ~= 0 then
+        if not _osexecute(command) then
             cc.printf("[ERR] Create directory %s failed", dir)
             os.exit(1)
         end
@@ -101,8 +121,7 @@ else
         _mkdir(pi.dirname)
 
         local command = string.format("COPY /Y /B %s %s > NUL", src, dst)
-        local code = os.execute(command)
-        if code ~= 0 then
+        if not _osexecute(command) then
             cc.printf("[ERR] Copy file %s to %s failed", src, dst)
             os.exit(1)
         end
