@@ -3,6 +3,7 @@
     "__type__": "cc.Prefab",
     "_name": "",
     "_objFlags": 0,
+    "_rawFiles": null,
     "data": {
       "__id__": 1
     }
@@ -56,14 +57,12 @@
       },
       {
         "__id__": 3
-      },
-      {
-        "__id__": 4
       }
     ],
     "_prefab": {
-      "__id__": 5
-    }
+      "__id__": 4
+    },
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Sprite",
@@ -112,20 +111,13 @@
     "playOnLoad": false
   },
   {
-    "__type__": "1c331BKMU9GrLOZYdHgU77g",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true
-  },
-  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
     },
-    "asset": null,
+    "asset": {
+      "__uuid__": "2a951c8d-70f8-4b62-8970-bc653fda47bb"
+    },
     "fileId": "1249d8nlslLGq4ahM8reOMt"
   }
 ]

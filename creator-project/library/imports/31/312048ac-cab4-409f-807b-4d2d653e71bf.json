@@ -3,6 +3,7 @@
     "__type__": "cc.Prefab",
     "_name": "CannonBall01",
     "_objFlags": 0,
+    "_rawFiles": null,
     "data": {
       "__id__": 1
     }
@@ -53,14 +54,12 @@
     "_components": [
       {
         "__id__": 2
-      },
-      {
-        "__id__": 3
       }
     ],
     "_prefab": {
-      "__id__": 4
-    }
+      "__id__": 3
+    },
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Sprite",
@@ -91,23 +90,13 @@
     }
   },
   {
-    "__type__": "b1386cjbkZPmbhd6eTUv1/r",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "boomPrefab": {
-      "__uuid__": "2a951c8d-70f8-4b62-8970-bc653fda47bb"
-    }
-  },
-  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
     },
-    "asset": null,
+    "asset": {
+      "__uuid__": "312048ac-cab4-409f-807b-4d2d653e71bf"
+    },
     "fileId": "72b7aczOMtE+Y6q5NM7DVhL"
   }
 ]
