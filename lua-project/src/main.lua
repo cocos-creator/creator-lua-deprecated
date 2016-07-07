@@ -34,24 +34,6 @@ local function main()
     local scene = assets:createScene(url)
     scene:run()
 
-    -- local button = creator.find(scene, "ButtonWithColor-02")
-    -- button:getComponent("cc.Button"):setEnabled(false)
-
-    -- local ship = creator.find(scene, "MyShip")
-    -- ship:addComponent(ShipAI.new())
-
-    -- local canvas = scene:getCanvasNode()
-    -- local x, y = ship:getPosition()
-
-    -- for i = 1, 300 do
-    --     local moreship = assets:createPrefab("resources/Ship")
-    --     moreship:addComponent(ShipAI.new())
-    --     local ny = math.random(30, 80)
-    --     moreship:setPosition(math.random(-300, 300), ny)
-    --     moreship:setLocalZOrder(y - ny)
-    --     canvas:addChild(moreship)
-    -- end
-
     _cleanmem()
 end
 
