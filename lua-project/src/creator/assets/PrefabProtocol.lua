@@ -90,6 +90,8 @@ local _trackComponents = function(self)
 end
 
 function PrefabProtocol.apply(target)
+    if target.___PREFAB_PROTOCOL_ENABLED__ then return end
+    target.___PREFAB_PROTOCOL_ENABLED__ = true
     target.addComponent     = _addComponent
     target.removeComponent  = _removeComponent
     target.getComponent     = _getComponent

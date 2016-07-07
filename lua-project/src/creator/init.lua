@@ -4,6 +4,8 @@ local table_makeweak = table.makeweak
 
 local creator = {}
 
+local PrefabProtocol = cc.import(".assets.PrefabProtocol")
+
 -- asset
 creator.SceneAsset = cc.import(".assets.SceneAsset")
 creator.PrefabAsset = cc.import(".assets.PrefabAsset")
@@ -40,8 +42,11 @@ function creator.find(obj, name)
 
     if not obj.__children then return end
     for _, child in ipairs(obj.__children) do
-        local ret = creator.find(child, name)
-        if ret then return ret end
+        local obj = creator.find(child, name)
+        if obj then
+            PrefabProtocol.apply(obj)
+            return obj
+        end
     end
 end
 
