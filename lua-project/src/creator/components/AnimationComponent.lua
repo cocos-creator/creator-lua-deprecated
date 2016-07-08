@@ -31,10 +31,12 @@ local function _createAnimation(uuid, assets)
     animation = cc.Animation:create()
     animation:setDelayPerUnit(delay)
 
-    for _, faval in ipairs(asset["curveData"]["comps"]["cc.Sprite"]["spriteFrame"]) do
-        local frameAsset = assets:getAsset(faval["value"]["__uuid__"])
-        local spriteFrame = assets:_createObject(frameAsset)
-        animation:addSpriteFrame(spriteFrame)
+    if asset["curveData"] and asset["curveData"]["comps"] then
+        for _, faval in ipairs(asset["curveData"]["comps"]["cc.Sprite"]["spriteFrame"]) do
+            local frameAsset = assets:getAsset(faval["value"]["__uuid__"])
+            local spriteFrame = assets:_createObject(frameAsset)
+            animation:addSpriteFrame(spriteFrame)
+        end
     end
 
     _animationCache:addAnimation(animation, uuid)
