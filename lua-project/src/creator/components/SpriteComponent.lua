@@ -10,6 +10,8 @@ end
 
 function SpriteComponent:onLoad(target)
     local node = self.node
+    if not node then return end
+
     local ap = target.__anchorPoint
     if not ap then
         ap = {x = 0.5, y = 0.5}

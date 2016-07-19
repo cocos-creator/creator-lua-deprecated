@@ -91,6 +91,10 @@ factory["cc.Node"] = function(asset)
 end
 
 factory["cc.Sprite"] = function(asset, assets)
+    if not asset["_spriteFrame"] then
+        return SpriteComponent.new()
+    end
+
     local uuid = asset["_spriteFrame"]["__uuid__"]
     local spriteFrameAsset = assets:getAsset(uuid)
     local spriteFrame = assets:_createObject(spriteFrameAsset)
@@ -121,7 +125,7 @@ factory["cc.SpriteFrame"] = function(asset, assets)
 end
 
 factory["cc.Label"] = function(asset)
-    local text = asset["_N$string"]
+    local text = asset["_N$string"] or ""
     local fontsize = asset["_fontSize"]
     if type(fontsize) ~= "number" then fontsize = 40 end
     local label = cc.Label:createWithSystemFont(text, "sans", fontsize)
@@ -161,13 +165,17 @@ factory["cc.ParticleSystem"] = function(asset, assets)
 end
 
 factory["cc.TiledMap"] = function(asset, assets)
+    if not asset["_tmxFile"] then
+        return TiledMapComponent.new()
+    end
+
     local uuid = asset["_tmxFile"]["__uuid__"]
     local xmlasset = assets:getAsset(uuid)
     local xml = xmlasset["tmxXmlStr"]
     local folder = "raw-assets/" .. xmlasset["tmxFolderPath"]
     local node = cc.TMXTiledMap:createWithXML(xml, folder)
     _set(node, asset, "cc.TiledMap")
-    return ParticleSystemComponent.new(node)
+    return TiledMapComponent.new(node)
 end
 
 factory["cc.TiledLayer"] = function()
