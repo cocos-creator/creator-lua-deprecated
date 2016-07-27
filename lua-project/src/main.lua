@@ -34,9 +34,6 @@ local function main()
     local scene = assets:createScene(url)
     scene:run()
 
-    local ship = creator.find(scene, "MyShip")
-    ship:addComponent(ShipAI.new())
-
     _cleanmem()
 end
 

@@ -17,9 +17,9 @@ function LabelComponent:onLoad(target)
     if not ap then
         ap = {x = 0.5, y = 0.5}
     end
-    if not self.multiline and target.contentSize.width then
-        node:setDimensions(target.contentSize.width, target.contentSize.height)
-    end
+    -- if not self.multiline and target.contentSize.width then
+    --     node:setDimensions(target.contentSize.width, target.contentSize.height)
+    -- end
     node:setAnchorPoint(ap)
     target:setAnchorPoint(ap)
 end

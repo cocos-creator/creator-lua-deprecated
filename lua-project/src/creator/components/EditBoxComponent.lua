@@ -41,8 +41,11 @@ function EditBoxComponent:init(contentSize, asset, assets)
     if asset["_N$fontColor"] then
         node:setFontColor(asset["_N$fontColor"])
     end
-    if not asset["_N$placeholder"] then 
+    if not asset["_N$placeholder"] then
     	asset["_N$placeholder"] = "Enter text here..."
+    end
+    if asset["_N$placeholderFontColor"] then
+        node:setPlaceholderFontColor(asset["_N$placeholderFontColor"])
     end
     node:setPlaceHolder(asset["_N$placeholder"])
     self.node = node

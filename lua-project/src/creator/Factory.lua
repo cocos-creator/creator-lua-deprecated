@@ -125,7 +125,7 @@ factory["cc.SpriteFrame"] = function(asset, assets)
 end
 
 factory["cc.Label"] = function(asset)
-    local text = asset["_N$string"] or ""
+    local text = asset["_N$string"] or "Label"
     local fontsize = asset["_fontSize"]
     if type(fontsize) ~= "number" then fontsize = 40 end
     local label = cc.Label:createWithSystemFont(text, "sans", fontsize)
