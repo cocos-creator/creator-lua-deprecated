@@ -59,6 +59,9 @@
 3.  删除 Lua 工程中的 `src` 和 `res` 目录中的所有文件。然后复制 `PATH-TO-CREATOR-LUA/lua-project/src` 中所有文件和子目录到 Lua 工程的 `src` 目录中。
 
 
+4.  复制 `PATH-TO-CREATOR-LUA/lua-project/convert-creator-build.sh` 和 `PATH-TO-CREATOR-LUA/lua-project/convert-creator-build.bat` 文件到 Lua 工程目录中。
+
+
 ### 第一步：构建场景
 
 1.  在 Cocos Creator 中，保存编辑好的场景，然后选择菜单“项目 -> 构建发布”
