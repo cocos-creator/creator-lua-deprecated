@@ -173,3 +173,4 @@ _dumpToLuaFile(destDir .. "/src/assets/prefabs.lua", "prefabs", vars.prefabs)
 
 print("done.")
 print("")
+
