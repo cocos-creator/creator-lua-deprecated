@@ -74,12 +74,11 @@
 在完成构建后，发布路径中会包含所有场景及其资源。但这些资源还不能直接供 Lua 工程使用，需要进行一次转换操作。
 
 
-### 第二步：转换为 Lua 格式
+### 第二步：转换为 Lua 格式（Mac 系统）
 
-1.  启动终端或者命令行窗口
+1.  启动终端
 2.  在命令行中进入 Lua 工程目录
-3.  执行 `./convert-creator-build.sh ../creator-project/build/lua` 。
-4.  如果是 Windows，执行 `convert-creator-build.bat ..\creator-project\build\lua` 。
+3.  执行：
 
     ```bash
     cd mygame
@@ -87,6 +86,21 @@
     ```
 
 4.  如果执行正常，转换后将看到 `done` 提示。
+
+### 第二步：转换为 Lua 格式（Windows 系统）
+
+1.  启动命令行窗口
+2.  在命令行中进入 Lua 工程目录
+3.  执行：
+
+    ```bash
+    cd mygame
+    convert-creator-build.bat ..\creator-project\build\lua
+    ```
+
+4.  如果执行正常，转换后将看到 `done` 提示。
+
+### 第三步：执行
 
 转换完成后，打开工程运行（或者使用 `cocos run` 命令），即可看到场景效果：
 
