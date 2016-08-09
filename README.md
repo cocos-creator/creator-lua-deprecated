@@ -56,10 +56,15 @@
     使用命令 `cocos new -l lua GAME-NAME` 新建一个 Lua 工程。
 
 
-3.  删除 Lua 工程中的 `src` 和 `res` 目录中的所有文件。然后复制 `PATH-TO-CREATOR-LUA/lua-project/src` 中所有文件和子目录到 Lua 工程的 `src` 目录中。
+3.  删除 Lua 工程中的 `src` 目录。
 
+4.  从 `PATH-TO-CREATOR-LUA/lua-project/` 中复制下列文件和目录到 Lua 工程中：
 
-4.  复制 `PATH-TO-CREATOR-LUA/lua-project/convert-creator-build.sh` 和 `PATH-TO-CREATOR-LUA/lua-project/convert-creator-build.bat` 文件到 Lua 工程目录中。
+    - `src` 目录
+    - `mac-bin` 目录
+    - `win32-bin` 目录
+    - `convert-creator-build.sh`
+    - `convert-creator-build.bat`
 
 
 ### 第一步：构建场景
