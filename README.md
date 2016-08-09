@@ -79,7 +79,7 @@
 1.  启动终端或者命令行窗口
 2.  在命令行中进入 Lua 工程目录
 3.  执行 `./convert-creator-build.sh ../creator-project/build/lua` 。
-4.  如果是 Windows，执行 `convert-creator-build.bat ..\creator-project\build\web-mobile` 。
+4.  如果是 Windows，执行 `convert-creator-build.bat ..\creator-project\build\lua` 。
 
     ```bash
     cd mygame
