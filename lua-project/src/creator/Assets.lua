@@ -26,10 +26,10 @@ function Assets:ctor(var)
             self.base = self.base .. "."
         end
 
-        self.assets  = require(self.base .. "assets.assets")
-        self.files   = require(self.base .. "assets.files")
-        self.scenes  = require(self.base .. "assets.scenes")
-        self.prefabs = require(self.base .. "assets.prefabs")
+        self.assets  = require(self.base .. "imports.assets")
+        self.files   = require(self.base .. "imports.files")
+        self.scenes  = require(self.base .. "imports.scenes")
+        self.prefabs = require(self.base .. "imports.prefabs")
     end
 end
 

@@ -164,12 +164,12 @@ local function _dumpToLuaFile(filename, varname, var)
     cc.printf("[OK] write file %s", filename)
 end
 
-_mkdir(destDir .. "/src/assets")
+_mkdir(destDir .. "/src/imports")
 
-_dumpToLuaFile(destDir .. "/src/assets/scenes.lua", "scenes", vars.scenes)
-_dumpToLuaFile(destDir .. "/src/assets/assets.lua", "assets", vars.assets)
-_dumpToLuaFile(destDir .. "/src/assets/files.lua", "files", vars.files)
-_dumpToLuaFile(destDir .. "/src/assets/prefabs.lua", "prefabs", vars.prefabs)
+_dumpToLuaFile(destDir .. "/src/imports/scenes.lua", "scenes", vars.scenes)
+_dumpToLuaFile(destDir .. "/src/imports/assets.lua", "assets", vars.assets)
+_dumpToLuaFile(destDir .. "/src/imports/files.lua", "files", vars.files)
+_dumpToLuaFile(destDir .. "/src/imports/prefabs.lua", "prefabs", vars.prefabs)
 
 print("done.")
 print("")
