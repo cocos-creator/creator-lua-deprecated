@@ -21,7 +21,7 @@ echo BUILD_DIR=%BUILD_DIR%
 cd %CUR_DIR%
 cd src
 
-%CUR_DIR%\..\win32-bin\lua\lua5.1.exe convert-creator-build.lua %BUILD_DIR% %CUR_DIR%
+%CUR_DIR%\win32-bin\lua\lua5.1.exe convert-creator-build.lua %BUILD_DIR% %CUR_DIR%
 
 cd %CUR_DIR%
 

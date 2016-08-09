@@ -41,6 +41,8 @@ rm -fr res
 mkdir res
 
 cp -R "$CUR_DIR/lua-project/src" src
+cp -R "$CUR_DIR/lua-project/mac-bin" mac-bin
+cp -R "$CUR_DIR/lua-project/win32-bin" win32-bin
 cp "$CUR_DIR/lua-project/convert-creator-build.sh" .
 cp "$CUR_DIR/lua-project/convert-creator-build.bat" .
 

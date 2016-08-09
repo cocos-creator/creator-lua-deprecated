@@ -26,5 +26,5 @@ BUILD_DIR=`pwd`
 echo "BUILD_DIR=$BUILD_DIR"
 
 cd "$CUR_DIR/src"
-$CUR_DIR/../mac-bin/lua convert-creator-build.lua "$BUILD_DIR"
+$CUR_DIR/mac-bin/lua convert-creator-build.lua "$BUILD_DIR"
 
