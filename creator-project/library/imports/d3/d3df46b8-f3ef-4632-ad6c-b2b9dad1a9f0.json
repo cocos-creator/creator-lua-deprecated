@@ -6,7 +6,8 @@
     "_rawFiles": null,
     "scene": {
       "__id__": 1
-    }
+    },
+    "asyncLoadAssets": false
   },
   {
     "__type__": "cc.Scene",

@@ -3,6 +3,7 @@
     "__type__": "cc.Prefab",
     "_name": "scrollview",
     "_objFlags": 0,
+    "_rawFiles": null,
     "data": {
       "__id__": 1
     }
@@ -67,7 +68,8 @@
     ],
     "_prefab": {
       "__id__": 20
-    }
+    },
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Node",
@@ -131,7 +133,8 @@
     ],
     "_prefab": {
       "__id__": 18
-    }
+    },
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Node",
@@ -185,7 +188,8 @@
     ],
     "_prefab": {
       "__id__": 5
-    }
+    },
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Sprite",
@@ -260,6 +264,7 @@
     "brake": 0.75,
     "elastic": true,
     "bounceDuration": 0.23,
+    "scrollEvents": [],
     "_N$horizontalScrollBar": null,
     "_N$verticalScrollBar": {
       "__id__": 6
@@ -317,7 +322,8 @@
     "_components": [],
     "_prefab": {
       "__id__": 15
-    }
+    },
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Node",
@@ -375,7 +381,8 @@
     ],
     "_prefab": {
       "__id__": 11
-    }
+    },
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Mask",
@@ -422,7 +429,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 131.62,
-      "height": 24
+      "height": 60
     },
     "_children": [],
     "_rotationX": 0,
@@ -450,7 +457,8 @@
     ],
     "_prefab": {
       "__id__": 14
-    }
+    },
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Label",
@@ -463,7 +471,8 @@
     "_useOriginalSize": false,
     "_fontSize": 16,
     "_lineHeight": 20,
-    "_enableWrapText": false,
+    "_enableWrapText": true,
+    "_N$file": null,
     "_isSystemFontUsed": true,
     "_N$string": "ScrollView content\n\n",
     "_N$horizontalAlign": 1,
@@ -498,7 +507,7 @@
       "__id__": 2
     },
     "_enabled": true,
-    "isAlignOnce": false,
+    "isAlignOnce": true,
     "_alignFlags": 37,
     "_left": 350.07654921020657,
     "_right": 0,
