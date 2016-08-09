@@ -53,7 +53,7 @@
 
 2.  新建一个 Lua 工程
 
-    使用命令 `cocos new -l lua GAME-NAME` 新建一个 Lua 工程。
+    使用命令 `cocos new -l lua 工程名` 新建一个 Lua 工程。注意：`工程名` 请替换为实际的工程名字，不要包含中文、空格和特殊符号。
 
 
 3.  删除 Lua 工程中的 `src` 目录。
