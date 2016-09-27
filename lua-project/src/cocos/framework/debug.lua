@@ -173,7 +173,7 @@ function cc.dumpval(value, desciption, indent, retarr)
                 end
             end)
             for i, k in ipairs(keys) do
-                _dump(values[k], k, indent2, keylen)
+                _dump(values[k], k, indent2, false)
             end
             result[#result +1] = string_format("%s},", indent)
         end

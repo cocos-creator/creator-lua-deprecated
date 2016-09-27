@@ -3,6 +3,7 @@ local ComponentBase = cc.class("cc.ComponentBase")
 
 function ComponentBase:ctor()
     self.__type = self.class.__cname
+    self.__isComponent = true
 end
 
 function ComponentBase:onLoad(target)

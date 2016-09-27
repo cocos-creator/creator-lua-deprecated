@@ -43,7 +43,7 @@ function Reader:loadJSON()
     for _, val in pairs(settings.scenes) do
         vars.scenes[_stripSceneUrl(val.url)] = val.uuid
     end
-    vars.scenes["__launchSceneUrl"] = _stripSceneUrl(settings.launchScene)
+    vars.scenes["__startSceneUrl"] = _stripSceneUrl(settings.launchScene)
 
     -- step 2: load all json files form res/import, write to import.lua
     if settings.rawAssets.assets then

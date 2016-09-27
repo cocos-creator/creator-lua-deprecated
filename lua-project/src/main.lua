@@ -28,7 +28,7 @@ local function main()
     local creator = require "creator.init"
     local assets = creator.getAssets()
 
-    local url = assets:getLaunchSceneUrl()
+    local url = assets:getStartSceneUrl()
     local scene = assets:createScene(url)
     scene:run()
 

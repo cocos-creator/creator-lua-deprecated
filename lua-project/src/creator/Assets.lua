@@ -33,8 +33,8 @@ function Assets:ctor(var)
     end
 end
 
-function Assets:getLaunchSceneUrl()
-    return self.scenes.__launchSceneUrl
+function Assets:getStartSceneUrl()
+    return self.scenes.__startSceneUrl
 end
 
 function Assets:createScene(url)
@@ -66,8 +66,10 @@ function Assets:createAsset(asset)
     local obj
     for id = count, 1, -1 do
         obj = objs[id]
-        self:_addComponents(obj, refs[id], refs, objs)
-        _connect(obj.__type, objs, id, refs)
+        if obj and not obj.__isComponent then
+            self:_addComponents(obj, refs[id], refs, objs)
+            _connect(obj.__type, objs, id, refs)
+        end
     end
 
     return objs[1]
