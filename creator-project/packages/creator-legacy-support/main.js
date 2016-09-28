@@ -50,7 +50,7 @@ function _build(reason) {
     };
     Electron.ipcMain.once(errorEvent, errorListener);
 
-    let workerUrl = Editor.url('packages://creator-legacy-support/core/builder-worker');
+    let workerUrl = 'packages://creator-legacy-support/core/builder-worker';
     worker = Editor.App.spawnWorker(workerUrl, (browser) => {
         var aborted;
         browser.once('closed', () => {
