@@ -320,6 +320,7 @@ class Builder {
         contents.push('return ' + varname);
         contents.push("\n");
         contents.push("\n");
+        Fs.ensureDirSync(Path.dirname(path));
         Fs.writeFileSync(path, contents.join(''));
     }
 
