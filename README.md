@@ -1,5 +1,7 @@
 # Cocos Creator 的 Lua 支持
 
+**当前版本 1.1.0**
+
 ## 目标
 
 让 Lua 开发者可以使用 Cocos Creator 来搭建场景和 UI，并在 Lua 游戏中正常显示和操作。
@@ -19,10 +21,16 @@
 -   Label (System Font) - 文字标签：仅支持系统字体
 -   Component with Lifetime events - 组件及其生命周期管理
 
+Creator 插件功能：
+
+-   设置目标项目（Lua 工程）路径
+-   复制需要的支持库到目标项目
+-   构建场景数据到目标项目
+-   在保存场景时自动构建
 
 ## 目前无法支持的功能
 
-由于 Cocos Creator 使用了一个基于 Cocos2d-x JS 的定制引擎，在 Sprite 的显示上和 Cocos2d-x Lua 有一些区别。所以一些控件暂时无法支持：
+一些控件暂时无法支持：
 
 -   ProgressBar
 -   Layout
@@ -31,88 +39,37 @@
 
 ## 使用说明
 
-目前，要在 Lua 工程中使用 Creator 创建的场景，需要经过三个步骤。我们会在新版里进一步简化操作，提高开发者的工作效率。
-
-
-### 准备工作
-
-1.  首先需要下载 creator-lua 的最新版本。
-
-    使用 `git` 下载：
+1.  创建一个 Lua 工程中：
 
     ```bash
-    $ git clone https://github.com/dualface/creator-lua.git
+    cocos new -l lua luaproject
     ```
 
-    或者直接下载 zip 文件并解压缩：
+2.  将 `creator-project/packages/creator-legacy-support` 目录复制到你的 Creator 工程的 `packages` 目录中。如果 `packages` 目录不存在，则需要创建一个。
 
-    `https://github.com/dualface/creator-lua/archive/master.zip`
+3.  用 Creator 打开工程，然后选择菜单 "Project（工程） -> Legacy Support -> Setup Target Project"，打开目标工程设置对话框：
+    
+    ![](docs/plugin-setup-dialog.png)
 
-    后文假定下载后的 creator-lua 目录为 `PATH-TO-CREATOR-LUA` 。
+    在这个对话框中选择目标工程的路径，然后点击“Copy Support Library”按钮，将支持 Creator 需要的文件复制到目标工程中（这个操作只需要对每一个目标工程做一次）。
 
+    然后点击“Build”按钮构建场景。
 
-2.  新建一个 Lua 工程
+4.  用 Xcode/Visual Studio 打开目标工程执行即可看到场景效果。
 
-    使用命令 `cocos new -l lua 工程名` 新建一个 Lua 工程。注意：`工程名` 请替换为实际的工程名字，不要包含中文、空格和特殊符号。
+~
 
+提示：
 
-3.  删除 Lua 工程中的 `src` 目录。
+-   如果希望每次保存场景后自动更新 Lua 文件，请在设置对话框中选中“Auto Build”选项。
+-   对于大型项目，自动构建可能较慢。此时应该禁用自动构建，然后通过菜单“Project（工程） -> Legacy Support -> Build Now”进行构建操作。
 
-4.  从 `PATH-TO-CREATOR-LUA/lua-project/` 中复制下列文件和目录到 Lua 工程中：
+~
 
-    - `src` 目录
-    - `mac-bin` 目录
-    - `win32-bin` 目录
-    - `convert-creator-build.sh`
-    - `convert-creator-build.bat`
+## 后续计划
 
-
-### 第一步：构建场景
-
-1.  在 Cocos Creator 中，保存编辑好的场景，然后选择菜单“项目 -> 构建发布”
-2.  发布平台选择为“Lua”
-
-    ![](docs/build.png)
-
-3.  点击“构建”按钮
-
-在完成构建后，发布路径中会包含所有场景及其资源。但这些资源还不能直接供 Lua 工程使用，需要进行一次转换操作。
-
-
-### 第二步：转换为 Lua 格式（Mac 系统）
-
-1.  启动终端
-2.  在命令行中进入 Lua 工程目录
-3.  执行：
-
-    ```bash
-    cd mygame
-    ./convert-creator-build.sh ../creator-project/build/lua
-    ```
-
-4.  如果执行正常，转换后将看到 `done` 提示。
-
-### 第二步：转换为 Lua 格式（Windows 系统）
-
-1.  启动命令行窗口
-2.  在命令行中进入 Lua 工程目录
-3.  执行：
-
-    ```bash
-    cd mygame
-    convert-creator-build.bat ..\creator-project\build\lua
-    ```
-
-4.  如果执行正常，转换后将看到 `done` 提示。
-
-### 第三步：执行
-
-转换完成后，打开工程运行（或者使用 `cocos run` 命令），即可看到场景效果：
-
-![](docs/play-scene.gif)
-
-
-### 注意事项
-
-每次在 Creator 中修改场景后，都需要做“构建 -> 转换”操作。
+-   完善控件库，支持所有 Creator 控件。
+-   完善插件，允许从插件中创建 Lua 工程，并自动设置好目标工程。
+-   在自动构建时使用增量构建，只构建修改过的场景和资源，提高工作效率。
+-   提供完善的使用文档。
 
