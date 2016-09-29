@@ -64,7 +64,9 @@ function _build(reason) {
                 Editor.error(err);
             }
 
-            worker.close();
+            if (worker) {
+                worker.close();
+            }
             worker = null;
         }, TIMEOUT);
     }, DEBUG_WORKER);
