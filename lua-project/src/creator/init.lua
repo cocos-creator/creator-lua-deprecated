@@ -19,7 +19,6 @@ creator.AnimationComponent = cc.import(".components.AnimationComponent")
 creator.WidgetComponent    = cc.import(".components.WidgetComponent")
 
 -- classes
-creator.Reader    = cc.import(".Reader")
 creator.Assets    = cc.import(".Assets")
 
 local _assets
