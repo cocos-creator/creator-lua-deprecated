@@ -4,7 +4,7 @@
 
 使用效果：
 
-![](http://fireball-x.com/creator-lua/img/usage.gif)
+![](docs/usage.gif)
 
 <br />
 
