@@ -2,6 +2,12 @@
 
 **当前版本 1.1.0**
 
+使用效果：
+
+![](http://fireball-x.com/creator-lua/img/usage.gif)
+
+<br />
+
 ## 目标
 
 让 Lua 开发者可以使用 Cocos Creator 来搭建场景和 UI，并在 Lua 游戏中正常显示和操作。
