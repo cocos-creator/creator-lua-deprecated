@@ -77,6 +77,7 @@ function _convertId(props) {
 class BuildWorker extends WorkerBase {
     run(state, callback) {
         Editor.Ipc.sendToAll('creator-legacy-support:state-changed', 'start', 0);
+        printlog('[creator-legacy-support] build start');
 
         Editor.require('app://asset-db');
 

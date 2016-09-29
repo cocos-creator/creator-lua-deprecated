@@ -2,7 +2,9 @@
 local string_sub = string.sub
 local table_makeweak = table.makeweak
 
-local creator = {}
+local creator = {
+    VERSION = "1.1.0"
+}
 
 local PrefabProtocol = cc.import(".assets.PrefabProtocol")
 
@@ -19,12 +21,13 @@ creator.AnimationComponent = cc.import(".components.AnimationComponent")
 creator.WidgetComponent    = cc.import(".components.WidgetComponent")
 
 -- classes
-creator.Assets    = cc.import(".Assets")
+creator.Assets = cc.import(".Assets")
 
 local _assets
 
 function creator.getAssets()
     if not _assets then
+        cc.printinfo("[Creator] v" .. creator.VERSION)
         _assets = creator.Assets.new()
     end
     return _assets
