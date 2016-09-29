@@ -1,3 +1,4 @@
+
 /* jslint node: true, sub: true, esversion: 6, browser: true */
 /* globals Editor */
 
@@ -9,10 +10,10 @@ const Electron = require('electron');
 
 const Project = require(Editor.url('packages://creator-legacy-support/core/Project.js'));
 
-const styleUrl = Editor.url('packages://creator-legacy-support/panel/style.css');
+const styleUrl = Editor.url('packages://creator-legacy-support/panels/style.css');
 const style = Fs.readFileSync(styleUrl);
 
-const templateUrl = Editor.url('packages://creator-legacy-support/panel/template.html');
+const templateUrl = Editor.url('packages://creator-legacy-support/panels/setup-project-panel.html');
 const template = Fs.readFileSync(templateUrl);
 
 Editor.Panel.extend({
@@ -65,6 +66,11 @@ Editor.Panel.extend({
                     Electron.shell.beep();
                 },
 
+                _onCopyLibraryClick(event) {
+                    event.stopPropagation();
+                    Editor.Ipc.sendToMain('creator-legacy-support:copy-library', 'ui');
+                },
+
                 _onSelectAllCheckedChanged(event) {
                     event.stopPropagation();
                     if (event.detail.value) {
@@ -81,7 +87,7 @@ Editor.Panel.extend({
 
                 _onSetupClick(event) {
                     event.stopPropagation();
-                    Editor.Panel.close('creator-legacy-support');
+                    Editor.Panel.close('creator-legacy-support.01');
                 }
             }
         });
@@ -97,8 +103,8 @@ Editor.Panel.extend({
     },
 
     messages: {
-        'creator-legacy-support:state-changed'(event, state, progess) {
-            this._stateChanged(state, progess);
+        'creator-legacy-support:state-changed'(event, state, progress) {
+            this._stateChanged(state, progress);
         }
     }
 });

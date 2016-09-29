@@ -7,9 +7,6 @@
 const Fs = require('fire-fs');
 const Path = require('path');
 
-const Electron = require('electron');
-const ipcRenderer = Electron.ipcRenderer;
-
 const printlog = Editor ? Editor.log : console.log;
 
 const DB_ASSETS_PREFIX = 'db://assets/';
@@ -26,7 +23,7 @@ const FIRE_SUFFIX_LENGTH = FIRE_SUFFIX.length;
 const RAW_INTERNAL_PREFIX = 'raw-internal';
 const RAW_ASSETS_PREFIX = 'raw-assets';
 
-let DEBUG_WORKER = false;
+const {WorkerBase, registerWorker} = require('./WorkerBase');
 
 const Project = require('./Project');
 const LuaValueDump = require('./LuaValueDump');
@@ -77,12 +74,10 @@ function _convertId(props) {
     }
 }
 
-class Builder {
-    constructor() {
-    }
-
+class BuildWorker extends WorkerBase {
     run(state, callback) {
-        this._progress = 0;
+        Editor.require('app://asset-db');
+
         this._usedUuids = {};
         this._db = Editor.assetdb.remote;
 
@@ -92,7 +87,9 @@ class Builder {
             this.project = new Project(state);
             this.project.setScenes(scenes);
 
-            if (DEBUG_WORKER) {
+            this._execTime('after queryAssets()');
+
+            if (this._debug) {
                 this.project.printlog();
             }
 
@@ -102,6 +99,8 @@ class Builder {
                 prefabs: {},
                 scenes: {}
             };
+
+            this._updateProgress(5);
 
             this._convertScenes();
             this._convertResources();
@@ -126,25 +125,29 @@ class Builder {
     }
 
     _convertScenes() {
-        if (DEBUG_WORKER) {
+        if (this._debug) {
             printlog('[creator-legacy-support] converting scenes');
         }
 
         let selectedScenes = this.project.getSelectedScenes();
-        let step = 60 / selectedScenes.length;
-        selectedScenes.forEach((scene) => {
+        let step = 55 / selectedScenes.length;
+
+        selectedScenes.forEach((scene, index) => {
+            this._execTime('before convert scene ' + (index + 1).toString());
             this._parseUuid(scene.uuid);
+            this._execTime('after convert scene ' + (index + 1).toString());
             let url = _stripSceneUrl(scene.url);
             this.results.scenes[url] = scene.uuid;
             if (scene.uuid === this.project.startSceneUuid) {
                 this.results.scenes.__startSceneUrl = url;
             }
-            this._incrProgess(step);
+
+            this._updateProgress(step);
         });
     }
 
     _convertResources() {
-        if (DEBUG_WORKER) {
+        if (this._debug) {
             printlog('[creator-legacy-support] converting resources');
         }
 
@@ -152,7 +155,7 @@ class Builder {
             let step = 10 / metas.length;
             metas.forEach((meta) => {
                 this._parseMeta(meta);
-                this._incrProgess(step);
+                this._updateProgress(step);
             });
 
             this._copyRawfiles();
@@ -173,7 +176,7 @@ class Builder {
             dest = Path.join(destdir, files[uuid]);
             Fs.ensureDirSync(Path.dirname(dest));
             Fs.copySync(db.uuidToFspath(uuid), dest);
-            this._incrProgess(step);
+            this._updateProgress(step);
         });
 
         this._finish();
@@ -325,27 +328,7 @@ class Builder {
         Fs.ensureDirSync(Path.dirname(path));
         Fs.writeFileSync(path, contents.join(''));
     }
-
-    _incrProgess(step) {
-        this._progress += step;
-        Editor.Ipc.sendToAll('creator-legacy-support:state-changed', 'building in progress', this._progress);
-    }
 }
 
-ipcRenderer.on('creator-legacy-support:run-builder', (event, state, debug) => {
-    DEBUG_WORKER = debug;
+registerWorker(BuildWorker, 'run-build-worker');
 
-    printlog('[creator-legacy-support] build start');
-    Editor.Ipc.sendToAll('creator-legacy-support:state-changed', 'start', 0);
-
-    Editor.require('app://asset-db');
-    let builder = new Builder();
-    builder.run(state, () => {
-        event.reply();
-    });
-});
-
-window.onerror = (p1, p2, p3, p4, error) => {
-    window.onerror = null;
-    Editor.Ipc.sendToMain('creator-legacy-support:convert-abort', error.stack);
-};

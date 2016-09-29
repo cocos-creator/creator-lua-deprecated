@@ -4,6 +4,9 @@
 
 "use strict";
 
+const Fs = require('fire-fs');
+const Path = require('path');
+
 const printlog = Editor ? Editor.log : console.log;
 function tostring(v) {
     return v === null ? '' : v.toString();
@@ -17,6 +20,39 @@ module.exports = class Project {
         this.autoBuild = state ? state.autoBuild : true;
         this.scenes = [];
         this._scenesUuid = (state && Array.isArray(state.scenesUuid)) ? state.scenesUuid : [];
+    }
+
+    validate() {
+        if (typeof this.path !== 'string' || this.path === '') {
+            Editor.warn('[Legacy Support] not set Target Project Path');
+            return false;
+        }
+
+        try {
+            let stat = Fs.statSync(this.path);
+            if (!stat.isDirectory()) {
+                Editor.warn('[Legacy Support] ' + this.path + ' is not directory');
+                return false;
+            }
+        } catch (e) {
+            Editor.warn('[Legacy Support] invalid path: ' + this.path);
+            return false;
+        }
+
+        let configPath
+        try {
+            configPath = Path.join(this.path, 'config.json');
+            let config = JSON.parse(Fs.readFileSync(configPath));
+            if (!config.init_cfg || !config.init_cfg.name) {
+                Editor.warn('[Legacy Support] ' + configPath + ' is not Cocos JSON file');
+                return false;
+            }
+        } catch (e) {
+            Editor.warn('[Legacy Support] ' + configPath + ' is not Cocos JSON file');
+            return false
+        }
+
+        return true;
     }
 
     printlog() {
