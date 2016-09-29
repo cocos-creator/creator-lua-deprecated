@@ -161,6 +161,8 @@ class Builder {
 
     _copyRawfiles() {
         let destdir = Path.join(this.project.path, 'res');
+        Fs.ensureDirSync(Path.dirname(destdir));
+
         let dest;
         let db = this._db;
 
@@ -169,7 +171,7 @@ class Builder {
         let step = 30 / uuids.length;
         uuids.forEach((uuid) => {
             dest = Path.join(destdir, files[uuid]);
-            Fs.ensureDirSync(Path.dirname(dest))
+            Fs.ensureDirSync(Path.dirname(dest));
             Fs.copySync(db.uuidToFspath(uuid), dest);
             this._incrProgess(step);
         });
