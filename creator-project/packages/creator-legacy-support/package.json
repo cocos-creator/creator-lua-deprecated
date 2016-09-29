@@ -5,7 +5,7 @@
   "author": "Cocos Creator",
   "main": "main.js",
   "main-menu": {
-      "Legacy Support/Setup Target Project": {
+      "i18n:MAIN_MENU.project.title/Legacy Support/Setup Target Project": {
           "message": "creator-legacy-support:setup-target-project"
       },
       "i18n:MAIN_MENU.project.title/Legacy Support/Build Now": {

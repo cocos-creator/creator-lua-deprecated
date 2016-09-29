@@ -76,6 +76,8 @@ function _convertId(props) {
 
 class BuildWorker extends WorkerBase {
     run(state, callback) {
+        Editor.Ipc.sendToAll('creator-legacy-support:state-changed', 'start', 0);
+
         Editor.require('app://asset-db');
 
         this._usedUuids = {};
