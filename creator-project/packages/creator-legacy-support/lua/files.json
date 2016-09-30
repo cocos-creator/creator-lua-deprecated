@@ -31,6 +31,7 @@
     "./src/creator/Connector.lua",
     "./src/creator/Factory.lua",
     "./src/creator/init.lua",
+    "./src/creator/version.lua",
     "./src/JeffreyJSON.lua",
     "./src/main.lua"
 ]

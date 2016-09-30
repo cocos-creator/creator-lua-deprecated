@@ -27,6 +27,9 @@ class CopyLibraryWorker extends WorkerBase {
             this._updateProgress(step);
         });
 
+        let contents = '\nreturn "' + this._opts.version + '"\n\n';
+        Fs.writeFileSync(Path.join(destdir, 'src', 'creator', 'version.lua'), contents);
+
         Editor.Ipc.sendToAll('creator-legacy-support:state-changed', 'finish', 100);
 
         callback();

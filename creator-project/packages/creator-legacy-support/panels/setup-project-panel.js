@@ -21,8 +21,9 @@ Editor.Panel.extend({
     template: template,
 
     ready() {
-        let profilesProject = this.profiles.project;
-        let project = new Project(profilesProject);
+        let opts = Editor.argv.panelArgv;
+        let profileProject = this.profiles.project;
+        let project = new Project(profileProject);
 
         let vm = this._vm = new window.Vue({
             el: this.shadowRoot,
@@ -30,15 +31,16 @@ Editor.Panel.extend({
                 project: project,
                 task: '',
                 buildState: 'sleep',
-                buildProgress: 0
+                buildProgress: 0,
+                version: opts.version
             },
 
             watch: {
                 project: {
                     handler(val) {
-                        if (!profilesProject.save) return;
-                        project.dumpState(profilesProject);
-                        profilesProject.save();
+                        if (!profileProject.save) return;
+                        project.dumpState(profileProject);
+                        profileProject.save();
                     },
                     deep: true
                 }
@@ -87,7 +89,7 @@ Editor.Panel.extend({
 
                 _onSetupClick(event) {
                     event.stopPropagation();
-                    Editor.Panel.close('creator-legacy-support.01');
+                    Editor.Panel.close('creator-legacy-support');
                 }
             }
         });

@@ -9,17 +9,27 @@ const Path = require('path');
 
 const Electron = require('electron');
 
+const PACKAGE_NAME = 'creator-legacy-support';
 const TIMEOUT = -1;
 const DEBUG_WORKER = false;
+let PACKAGE_VERSION = '';
 
 const Project = require('./core/Project');
 
+
 let _buildState = 'sleep';
+
+function _fetchVersion() {
+    let info = Editor.Package.packageInfo(Editor.Package.packagePath(PACKAGE_NAME));
+    PACKAGE_VERSION = info.version;
+}
 
 function _runWorker(url, message, project) {
     let worker;
     worker = Editor.App.spawnWorker(url, () => {
-        worker.send(message, project.dumpState(), DEBUG_WORKER, (err) => {
+        let opts = {version: PACKAGE_VERSION, debug: DEBUG_WORKER};
+        let state = project.dumpState();
+        worker.send(message, state, opts, (err) => {
             if (err) {
                 Editor.error(err);
             }
@@ -33,13 +43,13 @@ function _runWorker(url, message, project) {
 }
 
 function _checkProject(reason) {
-    let state = Editor.Profile.load('creator-legacy-support.01', 'project');
+    let state = Editor.Profile.load(PACKAGE_NAME, 'project');
     let project = new Project(state);
 
     if (project.validate()) {
         return project;
     } else {
-        if (reason === 'ui') {
+        if (reason !== 'scene:saved') {
             Editor.Dialog.messageBox({
               type: 'warning',
               buttons: [Editor.T('MESSAGE.ok')],
@@ -103,6 +113,8 @@ function _copyLibrary(reason) {
 
 module.exports = {
     load() {
+        _fetchVersion();
+        Editor.log('[Legacy Support] version ' + PACKAGE_VERSION);
     },
 
     unload() {
@@ -110,7 +122,7 @@ module.exports = {
 
     messages: {
         'setup-target-project'() {
-            Editor.Panel.open('creator-legacy-support.01');
+            Editor.Panel.open(PACKAGE_NAME, {version: PACKAGE_VERSION});
         },
 
         'build'(event, reason) {

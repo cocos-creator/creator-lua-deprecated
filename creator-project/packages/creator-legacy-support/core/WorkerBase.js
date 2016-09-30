@@ -7,10 +7,11 @@
 const Electron = require('electron');
 
 class WorkerBase {
-    constructor(debug) {
+    constructor(opts) {
         this._time = new Date();
         this._progress = 0;
-        this._debug = debug;
+        this._opts = opts;
+        this._debug = opts.debug;
     }
 
     _updateProgress(step) {
@@ -32,8 +33,8 @@ class WorkerBase {
 
 
 function registerWorker(workerClass, runEvent) {
-    Electron.ipcRenderer.on('creator-legacy-support:' + runEvent, (event, state, debug) => {
-        let worker = new workerClass(debug);
+    Electron.ipcRenderer.on('creator-legacy-support:' + runEvent, (event, state, opts) => {
+        let worker = new workerClass(opts);
         worker.run(state, () => {
             event.reply();
         });

@@ -20,6 +20,17 @@ header {
     border-bottom: 1px solid #666;
 }
 
+.version {
+    font-weight: normal;
+    font-size: 10px;
+    color: white;
+    background-color: #53bde0;
+    border-radius: 4px;
+    padding: 2px 4px;
+    position: relative;
+    top: -12px;
+}
+
 .progress {
     flex: 14;
     margin: 3px 15px 3px 0;
