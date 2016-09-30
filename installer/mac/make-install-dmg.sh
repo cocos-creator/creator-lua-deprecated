@@ -11,6 +11,8 @@ DMG_FILENAME="Creator-Lua-Support-$PACKAGE_VERSION.dmg"
 CONFIG_FILENAME="dmg-config.json"
 TEMP_CONFIG_FILENAME="dmg-config.work.json"
 
+xattr -dr com.apple.quarantine "$APP_DIR"
+
 sed "s/VERSION/$PACKAGE_VERSION/g" "$CONFIG_FILENAME" > "$TEMP_CONFIG_FILENAME"
 
 mkdir -p "$DISTS_DIR"
