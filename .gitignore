@@ -13,3 +13,7 @@ lua-project/simulator/
 
 contents.xcworkspacedata
 xcuserdata
+
+installer/mac/Install\ Legacy\ Support.app/Contents/Resources/dists/
+installer/mac/*.dmg
+
