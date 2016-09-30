@@ -1,5 +1,5 @@
 {
-    "title": "Install Creator Legacy Support VERSION",
+    "title": "Creator Lua Support VERSION",
     "icon": "../assets/Icon.icns",
     "icon-size": 256,
     "window": {
@@ -13,7 +13,7 @@
             "x": 240,
             "y": 160,
             "type": "file",
-            "path": "Install Legacy Support.app"
+            "path": "Install Lua Support.app"
         }
     ]
 }

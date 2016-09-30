@@ -1,15 +1,15 @@
 #!/bin/bash
 CURRENT_DIR=$(cd "$(dirname $0)" && pwd)
 
-PACKAGE_NAME="creator-legacy-support"
-APP_NAME="Install Legacy Support"
+PACKAGE_NAME="creator-lua-support"
+APP_NAME="Install Lua Support"
 APP_DIR="$CURRENT_DIR/$APP_NAME.app"
 DISTS_DIR="$APP_DIR/Contents/Resources/dists/$PACKAGE_NAME"
 PACKAGE_SRCDIR="$CURRENT_DIR/../../creator-project/packages/$PACKAGE_NAME/"
 PACKAGE_VERSION=$( sed -n 's/.*"version": "\(.*\)",/\1/p' "$PACKAGE_SRCDIR/package.json" )
-DMG_FILENAME="Install-Creator-Legacy-Support-$PACKAGE_VERSION.dmg"
-CONFIG_FILENAME="install-dmg.json"
-TEMP_CONFIG_FILENAME="install-dmg-work.json"
+DMG_FILENAME="Creator-Lua-Support-$PACKAGE_VERSION.dmg"
+CONFIG_FILENAME="dmg-config.json"
+TEMP_CONFIG_FILENAME="dmg-config.work.json"
 
 sed "s/VERSION/$PACKAGE_VERSION/g" "$CONFIG_FILENAME" > "$TEMP_CONFIG_FILENAME"
 

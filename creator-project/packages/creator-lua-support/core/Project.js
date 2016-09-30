@@ -24,18 +24,18 @@ module.exports = class Project {
 
     validate() {
         if (typeof this.path !== 'string' || this.path === '') {
-            Editor.warn('[Legacy Support] not set Target Project Path');
+            Editor.warn('[Lua Support] not set Target Project Path');
             return false;
         }
 
         try {
             let stat = Fs.statSync(this.path);
             if (!stat.isDirectory()) {
-                Editor.warn('[Legacy Support] ' + this.path + ' is not directory');
+                Editor.warn('[Lua Support] ' + this.path + ' is not directory');
                 return false;
             }
         } catch (e) {
-            Editor.warn('[Legacy Support] invalid path: ' + this.path);
+            Editor.warn('[Lua Support] invalid path: ' + this.path);
             return false;
         }
 
@@ -44,11 +44,11 @@ module.exports = class Project {
             configPath = Path.join(this.path, 'config.json');
             let config = JSON.parse(Fs.readFileSync(configPath));
             if (!config.init_cfg || !config.init_cfg.name) {
-                Editor.warn('[Legacy Support] ' + configPath + ' is not Cocos JSON file');
+                Editor.warn('[Lua Support] ' + configPath + ' is not Cocos JSON file');
                 return false;
             }
         } catch (e) {
-            Editor.warn('[Legacy Support] ' + configPath + ' is not Cocos JSON file');
+            Editor.warn('[Lua Support] ' + configPath + ' is not Cocos JSON file');
             return false
         }
 
