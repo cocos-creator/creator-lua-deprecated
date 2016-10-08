@@ -17,3 +17,5 @@ xcuserdata
 installer/mac/Install\ Lua\ Support.app/Contents/Resources/dists/
 installer/mac/*.dmg
 
+installer/win/*.exe
+
