@@ -2,9 +2,8 @@
 local string_sub = string.sub
 local table_makeweak = table.makeweak
 
-local creator = {
-    VERSION = "1.1.0"
-}
+local creator = {}
+creator.VERSION = cc.import(".version")
 
 local PrefabProtocol = cc.import(".assets.PrefabProtocol")
 

@@ -9,17 +9,27 @@ const Path = require('path');
 
 const Electron = require('electron');
 
+const PACKAGE_NAME = 'creator-lua-support';
 const TIMEOUT = -1;
 const DEBUG_WORKER = false;
+let PACKAGE_VERSION = '';
 
 const Project = require('./core/Project');
 
+
 let _buildState = 'sleep';
+
+function _fetchVersion() {
+    let info = Editor.Package.packageInfo(Editor.Package.packagePath(PACKAGE_NAME));
+    PACKAGE_VERSION = info.version;
+}
 
 function _runWorker(url, message, project) {
     let worker;
     worker = Editor.App.spawnWorker(url, () => {
-        worker.send(message, project.dumpState(), DEBUG_WORKER, (err) => {
+        let opts = {version: PACKAGE_VERSION, debug: DEBUG_WORKER};
+        let state = project.dumpState();
+        worker.send(message, state, opts, (err) => {
             if (err) {
                 Editor.error(err);
             }
@@ -33,22 +43,22 @@ function _runWorker(url, message, project) {
 }
 
 function _checkProject(reason) {
-    let state = Editor.Profile.load('creator-legacy-support.01', 'project');
+    let state = Editor.Profile.load(PACKAGE_NAME, 'project');
     let project = new Project(state);
 
     if (project.validate()) {
         return project;
     } else {
-        if (reason === 'ui') {
+        if (reason !== 'scene:saved') {
             Editor.Dialog.messageBox({
               type: 'warning',
               buttons: [Editor.T('MESSAGE.ok')],
-              title: 'Warning - Legacy Support',
+              title: 'Warning - Lua Support',
               message: 'Please setup Target Project first',
               noLink: true,
             });
         } else {
-            Editor.warn('[Legacy Support] Please setup Target Project first');
+            Editor.warn('[Lua Support] Please setup Target Project first');
         }
     }
 
@@ -57,7 +67,7 @@ function _checkProject(reason) {
 
 function _build(reason) {
     if (_buildState !== 'sleep' && _buildState !== 'finish') {
-        Editor.warn('[Legacy Support] Building in progress');
+        Editor.warn('[Lua Support] Building in progress');
         return;
     }
 
@@ -65,10 +75,10 @@ function _build(reason) {
     if (!project) return;
     if (reason === 'scene:saved' && !project.autoBuild) return;
 
-    Editor.Ipc.sendToAll('creator-legacy-support:state-changed', 'start', 0);
+    Editor.Ipc.sendToAll('creator-lua-support:state-changed', 'start', 0);
 
-    let workerUrl = 'packages://creator-legacy-support/core/BuildWorker';
-    _runWorker(workerUrl, 'creator-legacy-support:run-build-worker', project);
+    let workerUrl = 'packages://creator-lua-support/core/BuildWorker';
+    _runWorker(workerUrl, 'creator-lua-support:run-build-worker', project);
 }
 
 function _copyLibrary(reason) {
@@ -87,22 +97,24 @@ function _copyLibrary(reason) {
     let res = Editor.Dialog.messageBox({
       type: 'warning',
       buttons: ['Copy', Editor.T('MESSAGE.cancel')],
-      title: 'Warning - Legacy Support',
+      title: 'Warning - Lua Support',
       message: message,
       noLink: true,
     });
 
     if (res == 0) {
         // 0: Copy
-        Editor.Ipc.sendToAll('creator-legacy-support:state-changed', 'start', 0);
+        Editor.Ipc.sendToAll('creator-lua-support:state-changed', 'start', 0);
 
-        let workerUrl = 'packages://creator-legacy-support/core/CopyLibraryWorker';
-        _runWorker(workerUrl, 'creator-legacy-support:run-copy-library-worker', project);
+        let workerUrl = 'packages://creator-lua-support/core/CopyLibraryWorker';
+        _runWorker(workerUrl, 'creator-lua-support:run-copy-library-worker', project);
     }
 }
 
 module.exports = {
     load() {
+        _fetchVersion();
+        Editor.log('[Lua Support] version ' + PACKAGE_VERSION);
     },
 
     unload() {
@@ -110,7 +122,7 @@ module.exports = {
 
     messages: {
         'setup-target-project'() {
-            Editor.Panel.open('creator-legacy-support.01');
+            Editor.Panel.open(PACKAGE_NAME, {version: PACKAGE_VERSION});
         },
 
         'build'(event, reason) {
@@ -125,9 +137,9 @@ module.exports = {
             _build('scene:saved');
         },
 
-        'creator-legacy-support:state-changed'(event, state, progress) {
+        'creator-lua-support:state-changed'(event, state, progress) {
             _buildState = state;
-            Editor.Ipc.sendToWins('creator-legacy-support:state-changed', state, progress);
+            Editor.Ipc.sendToWins('creator-lua-support:state-changed', state, progress);
         }
     }
 };

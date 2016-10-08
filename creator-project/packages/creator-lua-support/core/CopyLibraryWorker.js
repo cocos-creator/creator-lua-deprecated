@@ -13,8 +13,8 @@ const Project = require('./Project');
 
 class CopyLibraryWorker extends WorkerBase {
     run(state, callback) {
-        let files = JSON.parse(Fs.readFileSync(Editor.url('packages://creator-legacy-support/lua/files.json')));
-        let srcdir = Editor.url('packages://creator-legacy-support/lua/');
+        let files = JSON.parse(Fs.readFileSync(Editor.url('packages://creator-lua-support/lua/files.json')));
+        let srcdir = Editor.url('packages://creator-lua-support/lua/');
         let destdir = state.path;
 
         let step = 100 / files.length;
@@ -27,7 +27,10 @@ class CopyLibraryWorker extends WorkerBase {
             this._updateProgress(step);
         });
 
-        Editor.Ipc.sendToAll('creator-legacy-support:state-changed', 'finish', 100);
+        let contents = '\nreturn "' + this._opts.version + '"\n\n';
+        Fs.writeFileSync(Path.join(destdir, 'src', 'creator', 'version.lua'), contents);
+
+        Editor.Ipc.sendToAll('creator-lua-support:state-changed', 'finish', 100);
 
         callback();
     }

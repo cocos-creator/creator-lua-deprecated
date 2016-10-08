@@ -7,15 +7,16 @@
 const Electron = require('electron');
 
 class WorkerBase {
-    constructor(debug) {
+    constructor(opts) {
         this._time = new Date();
         this._progress = 0;
-        this._debug = debug;
+        this._opts = opts;
+        this._debug = opts.debug;
     }
 
     _updateProgress(step) {
         this._progress += step;
-        Editor.Ipc.sendToAll('creator-legacy-support:state-changed',
+        Editor.Ipc.sendToAll('creator-lua-support:state-changed',
             'progress ' + Math.floor(this._progress) + '%',
             this._progress);
     }
@@ -24,7 +25,7 @@ class WorkerBase {
         let current = new Date();
         if (this._debug) {
             let times = (current.getTime() - this._time.getTime()) / 1000;
-            Editor.log('[creator-legacy-support] [' + tag + '] ' + times.toString() + 's');
+            Editor.log('[creator-lua-support] [' + tag + '] ' + times.toString() + 's');
         }
         this._time = current;
     }
@@ -32,8 +33,8 @@ class WorkerBase {
 
 
 function registerWorker(workerClass, runEvent) {
-    Electron.ipcRenderer.on('creator-legacy-support:' + runEvent, (event, state, debug) => {
-        let worker = new workerClass(debug);
+    Electron.ipcRenderer.on('creator-lua-support:' + runEvent, (event, state, opts) => {
+        let worker = new workerClass(opts);
         worker.run(state, () => {
             event.reply();
         });

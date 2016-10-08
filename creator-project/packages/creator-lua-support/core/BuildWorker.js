@@ -76,8 +76,8 @@ function _convertId(props) {
 
 class BuildWorker extends WorkerBase {
     run(state, callback) {
-        Editor.Ipc.sendToAll('creator-legacy-support:state-changed', 'start', 0);
-        printlog('[creator-legacy-support] build start');
+        Editor.Ipc.sendToAll('creator-lua-support:state-changed', 'start', 0);
+        printlog('[creator-lua-support] build start');
 
         Editor.require('app://asset-db');
 
@@ -118,8 +118,8 @@ class BuildWorker extends WorkerBase {
         this._dumplua('files', Path.join(basedir, 'files.lua'), this.results.files);
         this._dumplua('scenes', Path.join(basedir, 'scenes.lua'), this.results.scenes);
 
-        Editor.Ipc.sendToAll('creator-legacy-support:state-changed', 'finish', 100);
-        printlog('[creator-legacy-support] build completed');
+        Editor.Ipc.sendToAll('creator-lua-support:state-changed', 'finish', 100);
+        printlog('[creator-lua-support] build completed');
 
         this._usedUuids = null;
         this._db = null;
@@ -129,7 +129,7 @@ class BuildWorker extends WorkerBase {
 
     _convertScenes() {
         if (this._debug) {
-            printlog('[creator-legacy-support] converting scenes');
+            printlog('[creator-lua-support] converting scenes');
         }
 
         let selectedScenes = this.project.getSelectedScenes();
@@ -151,7 +151,7 @@ class BuildWorker extends WorkerBase {
 
     _convertResources() {
         if (this._debug) {
-            printlog('[creator-legacy-support] converting resources');
+            printlog('[creator-lua-support] converting resources');
         }
 
         this._db.queryMetas('db://assets/resources/**/', null, (err, metas) => {
