@@ -82,9 +82,10 @@ module.exports = class Project {
             return item.uuid == startSceneUuid;
         });
 
-        if (!startSceneUuid || !found) {
+        if (!found) {
             if (this.scenes.length) {
                 this.startSceneUuid = this.scenes[0].uuid;
+                this.scenes[0].checked = true;
             } else {
                 this.startSceneUuid = '';
             }
