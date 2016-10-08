@@ -21,3 +21,4 @@ Source: "..\..\installer\assets\Icon.ico"; DestDir: "{app}"
 
 [Messages]
 SetupWindowTitle=Setup - %1 1.1.0
+
