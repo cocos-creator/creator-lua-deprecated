@@ -9,7 +9,7 @@ const Path = require('path');
 
 const Electron = require('electron');
 
-const PACKAGE_NAME = 'creator-legacy-support';
+const PACKAGE_NAME = 'creator-lua-support';
 const TIMEOUT = -1;
 const DEBUG_WORKER = false;
 let PACKAGE_VERSION = '';
@@ -53,12 +53,12 @@ function _checkProject(reason) {
             Editor.Dialog.messageBox({
               type: 'warning',
               buttons: [Editor.T('MESSAGE.ok')],
-              title: 'Warning - Legacy Support',
+              title: 'Warning - Lua Support',
               message: 'Please setup Target Project first',
               noLink: true,
             });
         } else {
-            Editor.warn('[Legacy Support] Please setup Target Project first');
+            Editor.warn('[Lua Support] Please setup Target Project first');
         }
     }
 
@@ -67,7 +67,7 @@ function _checkProject(reason) {
 
 function _build(reason) {
     if (_buildState !== 'sleep' && _buildState !== 'finish') {
-        Editor.warn('[Legacy Support] Building in progress');
+        Editor.warn('[Lua Support] Building in progress');
         return;
     }
 
@@ -75,10 +75,10 @@ function _build(reason) {
     if (!project) return;
     if (reason === 'scene:saved' && !project.autoBuild) return;
 
-    Editor.Ipc.sendToAll('creator-legacy-support:state-changed', 'start', 0);
+    Editor.Ipc.sendToAll('creator-lua-support:state-changed', 'start', 0);
 
-    let workerUrl = 'packages://creator-legacy-support/core/BuildWorker';
-    _runWorker(workerUrl, 'creator-legacy-support:run-build-worker', project);
+    let workerUrl = 'packages://creator-lua-support/core/BuildWorker';
+    _runWorker(workerUrl, 'creator-lua-support:run-build-worker', project);
 }
 
 function _copyLibrary(reason) {
@@ -97,24 +97,24 @@ function _copyLibrary(reason) {
     let res = Editor.Dialog.messageBox({
       type: 'warning',
       buttons: ['Copy', Editor.T('MESSAGE.cancel')],
-      title: 'Warning - Legacy Support',
+      title: 'Warning - Lua Support',
       message: message,
       noLink: true,
     });
 
     if (res == 0) {
         // 0: Copy
-        Editor.Ipc.sendToAll('creator-legacy-support:state-changed', 'start', 0);
+        Editor.Ipc.sendToAll('creator-lua-support:state-changed', 'start', 0);
 
-        let workerUrl = 'packages://creator-legacy-support/core/CopyLibraryWorker';
-        _runWorker(workerUrl, 'creator-legacy-support:run-copy-library-worker', project);
+        let workerUrl = 'packages://creator-lua-support/core/CopyLibraryWorker';
+        _runWorker(workerUrl, 'creator-lua-support:run-copy-library-worker', project);
     }
 }
 
 module.exports = {
     load() {
         _fetchVersion();
-        Editor.log('[Legacy Support] version ' + PACKAGE_VERSION);
+        Editor.log('[Lua Support] version ' + PACKAGE_VERSION);
     },
 
     unload() {
@@ -137,9 +137,9 @@ module.exports = {
             _build('scene:saved');
         },
 
-        'creator-legacy-support:state-changed'(event, state, progress) {
+        'creator-lua-support:state-changed'(event, state, progress) {
             _buildState = state;
-            Editor.Ipc.sendToWins('creator-legacy-support:state-changed', state, progress);
+            Editor.Ipc.sendToWins('creator-lua-support:state-changed', state, progress);
         }
     }
 };

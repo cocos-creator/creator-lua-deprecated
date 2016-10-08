@@ -8,12 +8,12 @@ const Fs = require('fs');
 const Path = require('path');
 const Electron = require('electron');
 
-const Project = require(Editor.url('packages://creator-legacy-support/core/Project.js'));
+const Project = require(Editor.url('packages://creator-lua-support/core/Project.js'));
 
-const styleUrl = Editor.url('packages://creator-legacy-support/panels/style.css');
+const styleUrl = Editor.url('packages://creator-lua-support/panels/style.css');
 const style = Fs.readFileSync(styleUrl);
 
-const templateUrl = Editor.url('packages://creator-legacy-support/panels/setup-project-panel.html');
+const templateUrl = Editor.url('packages://creator-lua-support/panels/setup-project-panel.html');
 const template = Fs.readFileSync(templateUrl);
 
 Editor.Panel.extend({
@@ -70,7 +70,7 @@ Editor.Panel.extend({
 
                 _onCopyLibraryClick(event) {
                     event.stopPropagation();
-                    Editor.Ipc.sendToMain('creator-legacy-support:copy-library', 'ui');
+                    Editor.Ipc.sendToMain('creator-lua-support:copy-library', 'ui');
                 },
 
                 _onSelectAllCheckedChanged(event) {
@@ -84,12 +84,12 @@ Editor.Panel.extend({
 
                 _onBuildClick(event) {
                     event.stopPropagation();
-                    Editor.Ipc.sendToMain('creator-legacy-support:build', 'ui');
+                    Editor.Ipc.sendToMain('creator-lua-support:build', 'ui');
                 },
 
                 _onSetupClick(event) {
                     event.stopPropagation();
-                    Editor.Panel.close('creator-legacy-support');
+                    Editor.Panel.close('creator-lua-support');
                 }
             }
         });
@@ -105,7 +105,7 @@ Editor.Panel.extend({
     },
 
     messages: {
-        'creator-legacy-support:state-changed'(event, state, progress) {
+        'creator-lua-support:state-changed'(event, state, progress) {
             this._stateChanged(state, progress);
         }
     }

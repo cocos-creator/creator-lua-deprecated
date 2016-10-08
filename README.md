@@ -51,9 +51,9 @@ Creator 插件功能：
     cocos new -l lua luaproject
     ```
 
-2.  将 `creator-project/packages/creator-legacy-support` 目录复制到你的 Creator 工程的 `packages` 目录中。如果 `packages` 目录不存在，则需要创建一个。
+2.  将 `creator-project/packages/creator-lua-support` 目录复制到你的 Creator 工程的 `packages` 目录中。如果 `packages` 目录不存在，则需要创建一个。
 
-3.  用 Creator 打开工程，然后选择菜单 "Project（工程） -> Legacy Support -> Setup Target Project"，打开目标工程设置对话框：
+3.  用 Creator 打开工程，然后选择菜单 "Project（工程） -> Lua Support -> Setup Target Project"，打开目标工程设置对话框：
     
     ![](docs/plugin-setup-dialog.png)
 
@@ -68,7 +68,7 @@ Creator 插件功能：
 提示：
 
 -   如果希望每次保存场景后自动更新 Lua 文件，请在设置对话框中选中“Auto Build”选项。
--   对于大型项目，自动构建可能较慢。此时应该禁用自动构建，然后通过菜单“Project（工程） -> Legacy Support -> Build Now”进行构建操作。
+-   对于大型项目，自动构建可能较慢。此时应该禁用自动构建，然后通过菜单“Project（工程） -> Lua Support -> Build Now”进行构建操作。
 
 ~
 
