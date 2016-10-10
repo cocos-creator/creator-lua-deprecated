@@ -14,6 +14,15 @@ const TIMEOUT = -1;
 const DEBUG_WORKER = false;
 let PACKAGE_VERSION = '';
 
+const PROFILE_DEFAULTS = {
+    setup: false,
+    path: '',
+    startSceneUuid: '',
+    selectAllScenes: true,
+    autoBuild: false,
+    scenesUuid: []
+};
+
 const Project = require('./core/Project');
 
 
@@ -43,7 +52,8 @@ function _runWorker(url, message, project) {
 }
 
 function _checkProject(reason) {
-    let state = Editor.Profile.load(PACKAGE_NAME, 'project');
+    // workaround for creator 1.3
+    let state = Editor.Profile.load(PACKAGE_NAME, 'project', PROFILE_DEFAULTS);
     let project = new Project(state);
 
     if (project.validate()) {
@@ -73,7 +83,6 @@ function _build(reason) {
 
     let project = _checkProject(reason);
     if (!project) return;
-    if (reason === 'scene:saved' && !project.autoBuild) return;
 
     Editor.Ipc.sendToAll('creator-lua-support:state-changed', 'start', 0);
 
@@ -103,9 +112,7 @@ function _copyLibrary(reason) {
     });
 
     if (res == 0) {
-        // 0: Copy
         Editor.Ipc.sendToAll('creator-lua-support:state-changed', 'start', 0);
-
         let workerUrl = 'packages://creator-lua-support/core/CopyLibraryWorker';
         _runWorker(workerUrl, 'creator-lua-support:run-copy-library-worker', project);
     }
@@ -134,7 +141,11 @@ module.exports = {
         },
 
         'scene:saved'(event) {
-            _build('scene:saved');
+            // workaround for creator 1.3
+            let state = Editor.Profile.load(PACKAGE_NAME, 'project', PROFILE_DEFAULTS);
+            if (state.autoBuild) {
+                _build('scene:saved');
+            }
         },
 
         'creator-lua-support:state-changed'(event, state, progress) {

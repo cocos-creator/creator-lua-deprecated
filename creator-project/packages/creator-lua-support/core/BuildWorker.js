@@ -233,7 +233,9 @@ class BuildWorker extends WorkerBase {
 
         switch (props.__type__) {
         case 'cc.Sprite':
-            this._parseUuid(props._spriteFrame.__uuid__);
+            if (props._spriteFrame) {
+                this._parseUuid(props._spriteFrame.__uuid__);
+            }
             break;
 
         case 'cc.SpriteFrame':

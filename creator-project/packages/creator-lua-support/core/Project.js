@@ -44,11 +44,11 @@ module.exports = class Project {
             configPath = Path.join(this.path, 'config.json');
             let config = JSON.parse(Fs.readFileSync(configPath));
             if (!config.init_cfg || !config.init_cfg.name) {
-                Editor.warn('[Lua Support] ' + configPath + ' is not Cocos JSON file');
+                Editor.warn('[Lua Support] "' + configPath + '"" is not Cocos config file');
                 return false;
             }
         } catch (e) {
-            Editor.warn('[Lua Support] ' + configPath + ' is not Cocos JSON file');
+            Editor.warn('[Lua Support] can not load "' + configPath + '" or it is not Cocos config file');
             return false
         }
 
@@ -83,7 +83,7 @@ module.exports = class Project {
         });
 
         if (!found) {
-            if (this.scenes.length) {
+            if (this.scenes.length > 0) {
                 this.startSceneUuid = this.scenes[0].uuid;
                 this.scenes[0].checked = true;
             } else {
@@ -96,7 +96,6 @@ module.exports = class Project {
         if (!state) {
             state = {};
         }
-        state.setup = true;
         state.path = this.path;
         state.startSceneUuid = this.startSceneUuid;
         state.selectAllScenes = this.selectAllScenes;
