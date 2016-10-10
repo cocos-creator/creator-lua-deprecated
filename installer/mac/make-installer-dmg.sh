@@ -1,6 +1,9 @@
 #!/bin/bash
 CURRENT_DIR=$(cd "$(dirname $0)" && pwd)
 
+cd "$CURRENT_DIR"
+pwd
+
 PACKAGE_NAME="creator-lua-support"
 APP_NAME="Install Lua Support"
 APP_DIR="$CURRENT_DIR/$APP_NAME.app"
