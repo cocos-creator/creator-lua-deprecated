@@ -28,6 +28,8 @@ const {WorkerBase, registerWorker} = require('./WorkerBase');
 const Project = require('./Project');
 const LuaValueDump = require('./LuaValueDump');
 
+const SLASH_MARK = new RegExp(/\\/g);
+
 function _stripUrlPrefix(url) {
     if (url.startsWith(DB_ASSETS_PREFIX)) {
         url = url.substring(DB_ASSETS_PREFIX_LENGTH);
@@ -204,7 +206,7 @@ class BuildWorker extends WorkerBase {
             } else {
                 url = Path.join(RAW_ASSETS_PREFIX, _stripUrlPrefix(url));
             }
-            this.results.files[uuid] = url;
+            this.results.files[uuid] = url.replace(SLASH_MARK, '/');
         } else {
             let props = _loadProps(uuid);
             if (!_isInternalPrefab(url)) {
