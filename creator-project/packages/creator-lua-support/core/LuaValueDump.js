@@ -13,9 +13,11 @@ function _dumpkey(k) {
 
 const QUOTE_MARK = new RegExp(/"/g);
 const NEWLINE_MARK = new RegExp(/\n/g);
+const SLASH_MARK = new RegExp(/\\/g);
 
 function _dumpvalue(v) {
     if (typeof v === 'string') {
+        v = v.replace(SLASH_MARK, "\\\\");
         v = v.replace(QUOTE_MARK, "\\\"");
         v = v.replace(NEWLINE_MARK, "\\n");
         return "\"" + v + "\"";
