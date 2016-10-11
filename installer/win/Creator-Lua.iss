@@ -12,7 +12,7 @@ Compression=lzma2
 SolidCompression=yes
 SourceDir=..\..\creator-project\packages
 OutputDir=..\..\installer\win
-OutputBaseFilename=Creator-Lua-Support-1.1.2
+OutputBaseFilename=Creator-Lua-Support-1.1.2-win
 SetupIconFile=..\..\installer\assets\Icon.ico
 
 [Files]

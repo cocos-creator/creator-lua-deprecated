@@ -10,7 +10,7 @@ APP_DIR="$CURRENT_DIR/$APP_NAME.app"
 DISTS_DIR="$APP_DIR/Contents/Resources/dists/$PACKAGE_NAME"
 PACKAGE_SRCDIR="$CURRENT_DIR/../../creator-project/packages/$PACKAGE_NAME/"
 PACKAGE_VERSION=$( sed -n 's/.*"version": "\(.*\)",/\1/p' "$PACKAGE_SRCDIR/package.json" )
-DMG_FILENAME="Creator-Lua-Support-$PACKAGE_VERSION.dmg"
+DMG_FILENAME="Creator-Lua-Support-$PACKAGE_VERSION-mac.dmg"
 CONFIG_FILENAME="dmg-config.json"
 TEMP_CONFIG_FILENAME="dmg-config.work.json"
 
