@@ -103,8 +103,12 @@ factory["cc.Sprite"] = function(asset, assets)
     if asset["_type"] == 1 then
         -- sliced sprite
         local r = spriteFrameAsset["content"]["capInsets"]
-        capInsets = ccrect(r[1], r[2], r[3], r[4])
-        sprite = Scale9Sprite:createWithSpriteFrame(spriteFrame, capInsets)
+        if r then
+            capInsets = ccrect(r[1], r[2], r[3], r[4])
+            sprite = Scale9Sprite:createWithSpriteFrame(spriteFrame, capInsets)
+        else
+            sprite = Scale9Sprite:createWithSpriteFrame(spriteFrame)
+        end
     else
         sprite = cc.Sprite:createWithSpriteFrame(spriteFrame)
     end
