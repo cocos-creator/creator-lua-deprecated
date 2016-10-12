@@ -1,16 +1,11 @@
 # Cocos Creator 的 Lua 支持
 
-**当前版本 1.1.0**
-
-使用效果：
-
-![](docs/usage.gif)
-
-<br />
+**当前版本 1.1.3**
 
 ## 目标
 
 让 Lua 开发者可以使用 Cocos Creator 来搭建场景和 UI，并在 Lua 游戏中正常显示和操作。
+
 
 ## 主要特征
 
@@ -42,35 +37,39 @@ Creator 插件功能：
 -   Layout
 -   ScrollView
 
+## 安装插件
 
-## 使用说明
+Creator for Lua 1.1 插件提供了 Windows 和 Mac 下的安装程序，执行安装程序瞬间完成安装。
 
-1.  创建一个 Lua 工程中：
+然后，不好意思，没有然后了。JUST DO IT！
 
-    ```bash
-    cocos new -l lua luaproject
-    ```
 
-2.  将 `creator-project/packages/creator-lua-support` 目录复制到你的 Creator 工程的 `packages` 目录中。如果 `packages` 目录不存在，则需要创建一个。
+## 使用插件
 
-3.  用 Creator 打开工程，然后选择菜单 "Project（工程） -> Lua Support -> Setup Target Project"，打开目标工程设置对话框：
-    
-    ![](docs/plugin-setup-dialog.png)
+启动 Creator，在场景里啪啪啪放一堆内容，然后选择菜单“工程 -> Lua Support -> Setup Target Project”，就可以看到目标工程设置对话框。
 
-    在这个对话框中选择目标工程的路径，然后点击“Copy Support Library”按钮，将支持 Creator 需要的文件复制到目标工程中（这个操作只需要对每一个目标工程做一次）。
+![](docs/setup-target-project-dialog.png)
 
-    然后点击“Build”按钮构建场景。
+在这个对话框中我们只需要做三个步骤：
 
-4.  用 Xcode/Visual Studio 打开目标工程执行即可看到场景效果。
+1. 点击 Project Path 旁边的 “...” 按钮选择你的 Lua 工程目录；
+2. 点击 Copy Support Library 按钮（**这个步骤只需要对每一个新 Lua 工程做一次**）；
+3. 点击 Build 按钮。
 
-~
+如果你还没创建 Lua 工程，可以参考下面的命令行：
 
-提示：
+```bash
+$ cocos new -l lua mygame
+```
 
--   如果希望每次保存场景后自动更新 Lua 文件，请在设置对话框中选中“Auto Build”选项。
--   对于大型项目，自动构建可能较慢。此时应该禁用自动构建，然后通过菜单“Project（工程） -> Lua Support -> Build Now”进行构建操作。
+构建出 Lua 代码后，我们就可以愉快的在 Lua 中显示 Creator 创建的场景了。
 
-~
+### 自动构建
+
+默认情况下，并没有启用自动构建功能。所以修改场景后要更新 Lua 代码，需要重新点击 Build 按钮，或者选择菜单“工程 -> Lua Support -> Build Now”。
+
+更省事儿的做法是在对话框中选中 “Auto Build” 选项。这样每次保存场景，就会自动更新 Lua 代码啦。
+
 
 ## 后续计划
 
