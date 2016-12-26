@@ -35,7 +35,6 @@ function _fetchVersion() {
 
 function _runWorker(url, message, project) {
     let buildWorker;
-    Editor.log(url);
     Editor.App.spawnWorker(url, (worker) => {
         buildWorker = worker;
         let opts = {version: PACKAGE_VERSION, debug: DEBUG_WORKER};
