@@ -34,19 +34,21 @@ function _fetchVersion() {
 }
 
 function _runWorker(url, message, project) {
-    let worker;
-    worker = Editor.App.spawnWorker(url, () => {
+    let buildWorker;
+    Editor.log(url);
+    Editor.App.spawnWorker(url, (worker) => {
+        buildWorker = worker;
         let opts = {version: PACKAGE_VERSION, debug: DEBUG_WORKER};
         let state = project.dumpState();
-        worker.send(message, state, opts, (err) => {
+        buildWorker.send(message, state, opts, (err) => {
             if (err) {
                 Editor.error(err);
             }
 
-            if (worker) {
-                worker.close();
+            if (buildWorker) {
+                buildWorker.close();
             }
-            worker = null;
+            buildWorker = null;
         }, TIMEOUT);
     }, DEBUG_WORKER);
 }
