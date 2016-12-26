@@ -1,6 +1,6 @@
 # Cocos Creator 的 Lua 支持
 
-**当前版本 1.1.3**
+**当前版本 1.1.4，支持 Cocos Creator 1.3.x**
 
 ## 目标
 
