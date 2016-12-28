@@ -313,10 +313,12 @@ class BuildWorker extends WorkerBase {
         case 'cc.PrefabInfo':
             if (props['asset']) {
                 let uuid = props['asset'].__uuid__;
-                this._parseUuid(uuid);
-                let url = _stripUrlPrefix(this._db.uuidToUrl(uuid));
-                if (!_isInternalPrefab(url)) {
-                    this.results.prefabs[url] = uuid;
+                if (uuid) {
+                    this._parseUuid(uuid);
+                    let url = _stripUrlPrefix(this._db.uuidToUrl(uuid));
+                    if (!_isInternalPrefab(url)) {
+                        this.results.prefabs[url] = uuid;
+                    }
                 }
             }
             break;
