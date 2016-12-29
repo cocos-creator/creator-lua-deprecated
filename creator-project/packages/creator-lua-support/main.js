@@ -9,11 +9,12 @@ const Path = require('path');
 
 const Electron = require('electron');
 
-const PACKAGE_NAME = 'creator-lua-support';
 const TIMEOUT = -1;
 const DEBUG_WORKER = false;
 let PACKAGE_VERSION = '';
 
+const PROFILE_PATH = 'profile://project/creator-lua-support.json';
+const PACKAGE_NAME = 'creator-lua-support';
 const PROFILE_DEFAULTS = {
     setup: false,
     path: '',
@@ -54,19 +55,19 @@ function _runWorker(url, message, project) {
 
 function _checkProject(reason) {
     // workaround for creator 1.3
-    let state = Editor.Profile.load(PACKAGE_NAME, 'project', PROFILE_DEFAULTS);
-    let project = new Project(state);
+    let profile = Editor.Profile.load(PROFILE_PATH, PROFILE_DEFAULTS);
+    let project = new Project(profile.data);
 
     if (project.validate()) {
         return project;
     } else {
         if (reason !== 'scene:saved') {
             Editor.Dialog.messageBox({
-              type: 'warning',
-              buttons: [Editor.T('MESSAGE.ok')],
-              title: 'Warning - Lua Support',
-              message: 'Please setup Target Project first',
-              noLink: true,
+                type: 'warning',
+                buttons: [Editor.T('MESSAGE.ok')],
+                title: 'Warning - Lua Support',
+                message: 'Please setup Target Project first',
+                noLink: true,
             });
         } else {
             Editor.warn('[Lua Support] Please setup Target Project first');
@@ -143,8 +144,8 @@ module.exports = {
 
         'scene:saved'(event) {
             // workaround for creator 1.3
-            let state = Editor.Profile.load(PACKAGE_NAME, 'project', PROFILE_DEFAULTS);
-            if (state.autoBuild) {
+            let profile = Editor.Profile.load(PROFILE_PATH, PROFILE_DEFAULTS);
+            if (profile.data.autoBuild) {
                 _build('scene:saved');
             }
         },

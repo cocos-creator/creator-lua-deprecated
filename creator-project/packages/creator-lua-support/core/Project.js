@@ -13,13 +13,13 @@ function tostring(v) {
 }
 
 module.exports = class Project {
-    constructor(state) {
-        this.path = state ? state.path : '';
-        this.startSceneUuid = state ? state.startSceneUuid : '';
-        this.selectAllScenes = state ? state.selectAllScenes : true;
-        this.autoBuild = state ? state.autoBuild : true;
+    constructor(profile) {
+        this.path = profile ? profile.path : '';
+        this.startSceneUuid = profile ? profile.startSceneUuid : '';
+        this.selectAllScenes = profile ? profile.selectAllScenes : true;
+        this.autoBuild = profile ? profile.autoBuild : true;
         this.scenes = [];
-        this._scenesUuid = (state && Array.isArray(state.scenesUuid)) ? state.scenesUuid : [];
+        this._scenesUuid = (profile && Array.isArray(profile.scenesUuid)) ? profile.scenesUuid : [];
     }
 
     validate() {
@@ -63,7 +63,9 @@ module.exports = class Project {
         printlog('  autoBuild: ' + (this.autoBuild ? 'YES' : 'NO'));
         printlog('  scenes:');
         this.scenes.forEach((scene, index) => {
-            printlog('    ' + (index + 1).toString() + ': ' + scene.url + (scene.checked ? ' [*]' : ' [ ]'));
+            if (scene.checked) {
+                printlog('    ' + (index + 1).toString() + ': ' + scene.url + (scene.checked ? ' [*]' : ' [ ]'));
+            }
         });
     }
 

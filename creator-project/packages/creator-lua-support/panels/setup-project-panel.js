@@ -23,7 +23,7 @@ Editor.Panel.extend({
     ready() {
         let opts = Editor.argv.panelArgv;
         let profileProject = this.profiles.project;
-        let project = new Project(profileProject);
+        let project = new Project(profileProject.data);
 
         let vm = this._vm = new window.Vue({
             el: this.shadowRoot,
@@ -39,7 +39,7 @@ Editor.Panel.extend({
                 project: {
                     handler(val) {
                         if (!profileProject.save) return;
-                        project.dumpState(profileProject);
+                        project.dumpState(profileProject.data);
                         profileProject.save();
                     },
                     deep: true
